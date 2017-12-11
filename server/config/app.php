@@ -180,9 +180,6 @@ return [
 
         //JWTAuth
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-
-        //Darryldecode Shopping Cart
-        Darryldecode\Cart\CartServiceProvider::class,
     ),
 
     /*
@@ -233,7 +230,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
     ],
 
 ];
