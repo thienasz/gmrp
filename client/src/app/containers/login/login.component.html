@@ -1,0 +1,60 @@
+<!-- Inside Page -->
+<section class="v2_bnc_inside_page">
+  <div class="v2_bnc_content_top">
+  </div>
+      <div class="v2_breadcrumb_main">
+        <div class="container">
+          <ul class="breadcrumb">
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="">Đăng nhập</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="login border-user">
+        <div class="container">
+          <div class="v2_bnc_title_user text-center">
+            <h1>Đăng nhập</h1>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="v2-login">
+                <form #loginForm novalidate>
+                <h2>Đăng nhập</h2>
+                <div class="input-group">
+                  <input type="text" class="form-control" id ="txtname" name="email" value ="" placeholder="Tài khoản của bạn" required>
+                  <div class="warning" id="nameError" style="display:none;width:100%;" >
+                    <span style="color: red;">Bạn chưa nhập tên đăng nhập</span>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="txtpassword" name="password" value="" placeholder="Mật khẩu" required>
+                  <div class="warning" id="passwordError" style="display:none;width:100%;" >
+                    <span style="color: red;">Bạn chưa nhập mật khẩu</span>
+                  </div>
+                </div>
+                <p>
+                  <a class="text-center text-danger" href="">Bạn quên mật khẩu ?</a>
+                </p>
+                <button type="submit" class="btn btn-danger">Đăng nhập</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="v2-reg">
+              <form>
+                <h2>Tạo tài khoản mới</h2>
+                <div class="input-group">
+                  <input type="text" class="form-control email" id="email" name="email" value ="" placeholder="Email">
+                  <div class="warning" id="emailNull" style="display:none;width:100%;" >
+                    <span style="color: red;">Bạn chưa nhập email</span>
+                  </div>
+                  <div class="warning" id="emailError" style="display:none;width:100%;" >
+                    <span style="color: red;">Email không hợp lệ</span>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <input type="text" class="form-control name" id="name" name="username" value ="" placeholder="Tên đăng nhập">
+                  <div class="warning name_Error" id="name_Error" style="display:none;width:100%;" ><span style="color: red;">Bạn chưa nhập tên đăng nhập</span></div></div><div class="input-group"><input type="password" class="form-control" id = "password" name="password" value ="" placeholder="Mật khẩu"><div class="warning" id="password_Error" style="display:none;width:100%;" ><span style="color: red;">Bạn chưa nhập mật khẩu</span></div><div class="warning" id="password_short" style="display:none;width:100%;" ><span style="color: red;">Mật khẩu quá ngắn</span></div></div><div class="input-group"><input type="password" class="form-control" id = "repassword" name="repassword" value ="" placeholder="Nhập lại mật khẩu"><div class="warning" id="repasswordError" style="display:none;width:100%;" ><span style="color: red;">Bạn chưa nhập lại mật khẩu</span></div><div class="warning" id="changepasswordError" style="display:none;width:100%;" ><span style="color: red;">Mật khẩu nhập lại không đúng</span></div></div><div class="form-group check_capcha" check_capcha= "http://xhome.com.vn/user-login-checkCaptcha.html" ><input type="hidden" name="captcha" id="cap_md" value="0" /><div style="float: left; padding: 1px 5px 0 0; width: 45%;"><input type="text" placeholder="Mã xác thực"class="form-control" id="captcha_cha" value="" /></div><span><img id="capt_img_ct" src="/home-captcha.html" /> <img title="Tải lại mã bảo vệ" id="f5capt_cha" src="http://xhome.com.vn/modules/user/themes/resource/img/view-refresh-small.png" /><div class="warning" id="capchaError" style="display:none;width:100%;" ><span style="color: red;">Bạn chưa nhập hoặc nhập không đúng mã capcha</span></div></span></div><button type="submit" class="btn btn-danger">Đăng ký</button></form></div></div></div></div></div> <script src="http://xhome.com.vn/modules/user/themes/resource/js/jquery.validate.min.js" type="text/javascript"></script> <script type="text/javascript" src="http://xhome.com.vn/modules/user/themes/resource/js/login.js"></script> <script>$(document).ready(function() { Login.init();});</script>
+                </section>
+  <!-- End Inside Page -->
+  
