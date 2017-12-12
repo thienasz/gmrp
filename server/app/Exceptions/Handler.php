@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-//        if ($request->isJson()) {
+        if (env('APP_DEBUG') === false) {
             $e = $this->prepareException($exception);
 
             if ($e instanceof AuthenticationException) {
@@ -55,9 +55,9 @@ class Handler extends ExceptionHandler
             }
 
             return response()->jsonError($e->getMessage());
-//        }
+        }
 
-//        return parent::render($request, $exception);
+        return parent::render($request, $exception);
     }
 
     /**

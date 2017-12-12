@@ -22,6 +22,12 @@ class RegisterController extends Controller
             'email'=>'required|email|min:6|max:100',
             'password'=>'required|min:6|confirmed',
             'password_confirmation'=>"required"
+        ], [
+            'name'=>'required',
+            'game_id'=>'required',
+            'email'=>'required|email|min:6|max:100',
+            'password'=>'required|min:6|confirmed',
+            'password_confirmation'=>"required"
         ]);
 
         return response()->jsonOk($this->userService->registerUser($request));

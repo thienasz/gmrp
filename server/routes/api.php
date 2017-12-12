@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 //});
 
 Route::middleware(['cors'])->group(function (){
-    Route::middleware(['jwt.auth'])->group(function(){
+    Route::middleware(['jwt.auth', 'api-sdk'])->group(function(){
         Route::post('logout','LoginController@logout');
 
         //Get user details
@@ -48,6 +48,7 @@ Route::middleware(['cors'])->group(function (){
     //Register/Login
     Route::post('register','RegisterController@register');
     Route::post('login','LoginController@login');
+    Route::post('fblogin','LoginController@fbLogin');
 
 //Reset Password
     //Check mail and send mail

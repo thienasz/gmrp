@@ -36,13 +36,10 @@ $factory->define(App\Models\Admin::class, function (Faker\Generator $faker){
 
 $factory->define(App\Models\UserDetails::class, function (Faker\Generator $faker){
     return [
-        'firstname'=> $faker->firstName,
-        'lastname' => $faker->lastName,
+        'first_name'=> $faker->firstName,
+        'last_name' => $faker->lastName,
         'date_of_birth' => $faker->date(),
         'phone' => $faker->phoneNumber,
-        'cityID' => $faker->randomNumber(),
-        'districtID' => $faker->randomNumber(),
         'address' => $faker->address,
-        'userID' => $faker->randomNumber()
     ];
 });

@@ -16,10 +16,14 @@ class CreateUsersTable extends Migration
         if (!Schema::hasTable('users'))
             Schema::create('users', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name');
+                $table->string('name')->nullable();
+                $table->string('username')->nullable();
+                $table->string('fb_uid')->nullable();
+                $table->string('fb_token')->nullable();
                 $table->string('email')->unique();
-                $table->string('password');
-                $table->string('game_id');
+                $table->string('password')->nullable();
+                $table->string('game_id')->nullable();
+                $table->string('agency_id')->nullable();
                 $table->boolean('role')->default(0);
                 $table->rememberToken();
                 $table->timestamps();

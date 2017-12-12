@@ -24,6 +24,6 @@ class UserController extends Controller
     {
         $users = $this->userService->getAllUser();
 
-        return response()->collection($users, new UserTransformer());
+        return response()->jsonOk($users);
     }
 }

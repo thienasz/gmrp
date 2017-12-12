@@ -9,6 +9,7 @@
 
 namespace App\Services;
 use App\Models\User;
+use App\Models\UserDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use JWTAuth;
@@ -18,10 +19,12 @@ use Validator;
 class UserService extends Service
 {
     private $userModel;
+    private $userDetails;
 
-    function __construct(User $userModel)
+    function __construct(User $userModel, UserDetails $userDetails)
     {
         $this->userModel = $userModel;
+        $this->userDetails = $userDetails;
     }
 
     public function getAllUser()
@@ -48,6 +51,39 @@ class UserService extends Service
 
     public function loginUser(Request $request){
         $credentials = $request->only('email','password', 'game_id');
+        $token = JWTAuth::attempt($credentials);
+
+        return $token;
+    }
+
+    public function adminLoginUser(Request $request){
+        $credentials = $request->only('username','password');
+        $credentials['role'] = 1;
+
+        $token = JWTAuth::attempt($credentials);
+
+        return $token;
+    }
+
+    public function fbLoginUser(Request $request){
+        $credentials = $this->userModel->updateOrCreate(
+            ['fb_uid' => $request['fb_uid']],
+            [
+                'fb_token' =>  $request['fb_token'],
+                'email' => $request['email'],
+            ]
+        );
+
+        $this->userDetails->updateOrCreate(
+            ['user_id' => $credentials->id],
+            [
+                'last_name' =>  $request['last_name'],
+                'first_name' =>  $request['first_name'],
+                'phone' =>  $request['phone'],
+                'address' =>  $request['address'],
+            ]
+        );
+
         $token = JWTAuth::attempt($credentials);
 
         return $token;
