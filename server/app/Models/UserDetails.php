@@ -9,10 +9,11 @@ class UserDetails extends Model
 {
     protected $table = 'user_details';
 
-    protected $fillable = [
-        'firstname','lastname','date_of_birth','phone','cityID','districtID','address','userID','status','gender'
-    ];
+//    protected $fillable = [
+//        'firstname','lastname','date_of_birth','phone','cityID','districtID','address','userID','status','gender'
+//    ];
 
+    protected $guarded = [];
     public function getUserDetailsByID($userID){
         $userDetailsModel = new UserDetails();
 

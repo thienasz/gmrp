@@ -18,10 +18,10 @@ class CreateUserDetailsTable extends Migration
                 $table->increments('id');
                 $table->string('first_name');
                 $table->string('last_name');
-                $table->date('date_of_birth');
+                $table->date('date_of_birth')->nullable();
                 $table->boolean('gender')->default(1);
-                $table->string('phone');
-                $table->longText('address');
+                $table->string('phone')->nullable();
+                $table->longText('address')->nullable();
                 $table->integer('user_id');
                 $table->timestamps();
             });

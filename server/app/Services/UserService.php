@@ -66,23 +66,32 @@ class UserService extends Service
     }
 
     public function fbLoginUser(Request $request){
-        $credentials = $this->userModel->updateOrCreate(
+        $pass = str_random(8);
+        $user = $this->userModel->updateOrCreate(
             ['fb_uid' => $request['fb_uid']],
             [
                 'fb_token' =>  $request['fb_token'],
                 'email' => $request['email'],
+                'game_id' => $request['phone'],
+                'password' => bcrypt($pass)
             ]
         );
 
         $this->userDetails->updateOrCreate(
-            ['user_id' => $credentials->id],
+            ['user_id' => $user->id],
             [
-                'last_name' =>  $request['last_name'],
-                'first_name' =>  $request['first_name'],
-                'phone' =>  $request['phone'],
-                'address' =>  $request['address'],
+                'first_name' => $request['first_name'],
+                'last_name' => $request['last_name'],
+                'phone' => $request['phone'],
             ]
         );
+
+        $credentials = [
+            'fb_uid' => $user->fb_uid,
+            'fb_token' => $user->fb_token,
+            'game_id' => $user->game_id,
+            'password' => $pass
+        ];
 
         $token = JWTAuth::attempt($credentials);
 
