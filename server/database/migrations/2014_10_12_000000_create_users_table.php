@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
                 $table->string('username')->nullable();
                 $table->string('fb_uid')->nullable();
                 $table->string('fb_token')->nullable();
-                $table->string('email')->unique()->nullable();
+                $table->string('email')->nullable();
                 $table->string('password')->nullable();
                 $table->string('game_id')->nullable();
                 $table->string('agency_id')->nullable();

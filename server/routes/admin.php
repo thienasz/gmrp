@@ -29,10 +29,11 @@ Route::middleware(['cors'])->group(function (){
 
         Route::get('/user', 'UserController@index');
 
-        //Post
-//            Route::post('post', 'PostController@store'); //create
-//            Route::post('post/{postID}', 'PostController@update'); //update
-//            Route::delete('post/{postID}', 'PostController@delete'); //delete
+        //Game
+        Route::get('game', 'GameController@index'); //create
+        Route::post('game', 'GameController@store'); //create
+        Route::post('game/{gameID}', 'GameController@update'); //update
+        Route::delete('game/{gameID}', 'GameController@delete'); //delete
     });
 
 
@@ -50,9 +51,9 @@ Route::middleware(['cors'])->group(function (){
 //    //Reset password then renew password reset token
 //    Route::put('forgot-password','ForgotPasswordController@resetPassword');
 //
-////Post
-//    Route::get('post','PostController@index');
-//    Route::get('post/{postID}','PostController@show');
+////Game
+//    Route::get('post','GameController@index');
+//    Route::get('post/{postID}','GameController@show');
 });
 
 

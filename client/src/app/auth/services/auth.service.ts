@@ -61,7 +61,7 @@ export class AuthService {
   
   logout(): void {
     this.removeAccount();
-    this.router.navigate(['/auth/logout']);
+    this.router.navigate(['/auth/login']);
   }
 
   removeAccount() {

@@ -27,9 +27,13 @@ class UserService extends Service
         $this->userDetails = $userDetails;
     }
 
-    public function getAllUser()
+    public function getAllUser($perPage = 15, $role = false)
     {
-        return $this->userModel->all();
+        if($role === false) {
+            return $this->userModel->with(['game', 'userDetail'])->paginate($perPage);
+        }
+
+        return $this->userModel->where('role', $role)->with(['game', 'userDetail'])->orderBy('id', 'desc')->paginate($perPage);
     }
 
     public function registerUser(Request $request){
@@ -47,6 +51,10 @@ class UserService extends Service
             'game_id'=>$request->game_id,
             'password'=>bcrypt($request->password)
         ]);
+    }
+
+    public function getUser($data){
+        return $this->userModel->where($data)->first();
     }
 
     public function loginUser(Request $request){
@@ -73,7 +81,8 @@ class UserService extends Service
                 'fb_token' =>  $request['fb_token'],
                 'email' => $request['email'],
                 'game_id' => $request['phone'],
-                'password' => bcrypt($pass)
+                'password' => bcrypt($pass),
+                'role' => 2,
             ]
         );
 

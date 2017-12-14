@@ -69,11 +69,11 @@ class LoginController extends Controller
         $this->validate($request, [
             'fb_uid'=>'required',
             'fb_token'=>'required',
-            'game_id'=>'required',
+            'game_id'=>'required|exists:games,id',
         ], [
             'fb_uid'=>'required',
             'fb_token'=>'required',
-            'game_id'=>'required',
+            'game_id'=>'required|exists:games,id',
         ]);
 
         $token = $this->userService->fbLoginUser($request);

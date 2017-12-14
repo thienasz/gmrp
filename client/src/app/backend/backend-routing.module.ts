@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BackendComponent } from './backend.component';
 import { UserComponent } from './user/user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GameComponent } from './game/game.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,8 @@ const routes: Routes = [
     component: BackendComponent,
     children: [
       { path: '', component: DashboardComponent },
-      { path: 'user', component: UserComponent }
+      { path: 'users', component: UserComponent },
+      { path: 'games', component: GameComponent }
     ]
   }
 ];

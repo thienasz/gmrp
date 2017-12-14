@@ -43,4 +43,14 @@ class User extends Authenticatable
 
         return $userUpdated;
     }
+
+    public function userDetail()
+    {
+        return $this->hasOne('App\Models\UserDetails');
+    }
+
+    public function game()
+    {
+        return $this->hasOne('App\Models\Game', 'id', 'game_id');
+    }
 }

@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 use App\Services\UserService;
 use App\Transformers\UserTransformer;
+use Illuminate\Http\Request;
+use League\Flysystem\Exception;
 
 class UserController extends Controller
 {
@@ -20,9 +22,9 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->userService->getAllUser();
+        $users = $this->userService->getAllUser(15, $request->get('role'));
 
         return response()->jsonOk($users);
     }
