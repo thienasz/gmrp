@@ -15,17 +15,14 @@ class CreateUserDetailsTable extends Migration
     {
         if (!Schema::hasTable('user_details'))
             Schema::create('user_details', function (Blueprint $table){
-                $table->increments('userDetailsID');
-                $table->string('firstname');
-                $table->string('lastname');
-                $table->date('date_of_birth');
+                $table->increments('id');
+                $table->string('first_name');
+                $table->string('last_name');
+                $table->date('date_of_birth')->nullable();
                 $table->boolean('gender')->default(1);
-                $table->string('phone');
-                $table->integer('cityID');
-                $table->integer('districtID');
-                $table->longText('address');
-                $table->integer('userID');
-                $table->boolean('status')->default(1);
+                $table->string('phone')->nullable();
+                $table->longText('address')->nullable();
+                $table->integer('user_id');
                 $table->timestamps();
             });
     }

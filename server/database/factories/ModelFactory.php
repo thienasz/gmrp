@@ -12,15 +12,25 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+$factory->define(App\Models\Game::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->unique()->safeEmail,
+        'status' => 1
+    ];
+});
+
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
-
+    $games = \App\Models\Game::all()->pluck('id')->toArray();
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'game_id' => str_random(5),
+        'game_id' => $faker->randomElement($games),
         'password' => $password ?: $password = bcrypt('123456'),
         'remember_token' => str_random(10),
+        'role' => random_int(0,2),
     ];
 });
 
@@ -35,14 +45,13 @@ $factory->define(App\Models\Admin::class, function (Faker\Generator $faker){
 });
 
 $factory->define(App\Models\UserDetails::class, function (Faker\Generator $faker){
+    $users = \App\Models\User::where('role', 2)->get()->pluck('id')->toArray();
     return [
-        'firstname'=> $faker->firstName,
-        'lastname' => $faker->lastName,
+        'user_id' => $faker->randomElement($users),
+        'first_name'=> $faker->firstName,
+        'last_name' => $faker->lastName,
         'date_of_birth' => $faker->date(),
         'phone' => $faker->phoneNumber,
-        'cityID' => $faker->randomNumber(),
-        'districtID' => $faker->randomNumber(),
         'address' => $faker->address,
-        'userID' => $faker->randomNumber()
     ];
 });

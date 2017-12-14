@@ -18,8 +18,8 @@ class CheckRole
     {
         $user = Auth::user();
 
-        if ($user->role==0){
-            return response()->json(["error"=>"You don't have permission to access this site."],403);
+        if ($user->role != 1){
+            return response()->jsonError("You don't have permission to access this site.",403);
         }
 
         return $next($request);

@@ -1,0 +1,84 @@
+.core-breadcrumb {
+    margin: 0 0 1.5rem 0;
+}
+
+.admin-wrapper {
+    // background-color: #fff;
+    min-height: 800px;
+}
+
+.admin-container {
+    margin: 2em;
+}
+
+.letf-header {
+    width: 255px;
+    display: table;
+    
+    .nav {
+        display: table-cell;
+        vertical-align: middle;
+        float: right;
+        // width: 30px;
+    }
+}
+.sidebar {
+    flex: 0 0 255px;
+    border: 0;
+    box-shadow: 0px 1px 15px 1px rgba(113, 106, 202, 0.08);
+//     // background: #282a3c;
+//     // color: #575962;
+    
+    .nav {
+        width: 255px;
+    }
+
+    .sidebar-nav {
+        width: 255px;
+    }
+}
+
+.app-header.navbar .navbar-brand {
+    width: 205px;
+    border: 0;
+    box-shadow: 0px 1px 15px 1px rgba(113, 106, 202, 0.08);
+}
+// .app-title {
+//     width: 255px;
+//     height: 100%;
+//     position: relative;
+//     background: #29363d;//#282a3c;
+
+//     .nav-button {
+//         position: absolute;
+//         top: 0;
+//         right: 0;
+//     }
+// }
+
+// .app-navigate {
+//     width: calc(100% - 200px);
+//     position: relative;
+//     top: -55px;
+//     left: 255px;
+// }
+.app-header.navbar {
+    border: 0;
+    box-shadow: 0px 1px 15px 1px rgba(113, 106, 202, 0.08);
+}
+// .app-header.navbar {
+//     position: absolute;
+//     top: 0;
+//     width: 100% - 200px;
+//     z-index: 9999;
+//     height: 55px;
+// }
+
+// .sidebar .sidebar-nav {
+
+// }
+
+// .app-body {
+//     position: relative;
+//     top: 55px;
+// }

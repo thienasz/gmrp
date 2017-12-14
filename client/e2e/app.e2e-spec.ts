@@ -1,10 +1,10 @@
-import { PortfolioPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('portfolio App', () => {
-  let page: PortfolioPage;
+describe('client App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new PortfolioPage();
+    page = new AppPage();
   });
 
   it('should display welcome message', () => {
