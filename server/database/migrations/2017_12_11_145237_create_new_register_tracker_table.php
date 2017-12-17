@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAgenciesTable extends Migration
+class CreateNewRegisterTrackerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateAgenciesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('agencies'))
-            Schema::create('agencies', function (Blueprint $table) {
+        if (!Schema::hasTable('new_register_tracker'))
+            Schema::create('new_register_tracker', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name')->unique();
-                $table->string('description', 1000)->nullable();
+                $table->integer('game_id');
+                $table->integer('user_id');
+                $table->integer('agency_id');
                 $table->timestamps();
             });
     }
@@ -29,6 +30,6 @@ class CreateAgenciesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agencies');
+        Schema::dropIfExists('new_register_tracker');
     }
 }

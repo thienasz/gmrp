@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\GameSessionTrackerService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use JWTAuth;
@@ -12,10 +13,12 @@ use Tymon\JWTAuth\Facades\JWTFactory;
 class LoginController extends Controller
 {
     private $userService;
+    private $gameSessionTrackerService;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, GameSessionTrackerService $gameSessionTrackerService)
     {
         $this->userService = $userService;
+        $this->gameSessionTrackerService = $gameSessionTrackerService;
     }
 
     public function login(Request $request)
@@ -35,6 +38,7 @@ class LoginController extends Controller
             return response()->jsonError('invalid_credentials');
         }
 
+        $this->gameSessionTrackerService->startGameSession($request);
 //        $user = JWTAuth::parseToken()->authenticate();
 
         $user = Auth::user();
@@ -83,6 +87,7 @@ class LoginController extends Controller
         }
 
 //        $user = JWTAuth::parseToken()->authenticate();
+        $this->gameSessionTrackerService->startGameSession($request);
 
         $user = Auth::user();
         $exp = JWTFactory::exp();
@@ -92,6 +97,8 @@ class LoginController extends Controller
     public function logout(){
         $token = JWTAuth::getToken();
         if ($token){
+            $this->gameSessionTrackerService->endGameSession();
+
             JWTAuth::invalidate($token);
             return response()->jsonOk(["Message"=>"Logout Successfully!"]);
         }else{

@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NewRegisterTracker;
+use App\Services\NewRegisterTrackerService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
     private $userService;
+    private $newRegisterTracker;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, NewRegisterTrackerService $newRegisterTracker)
     {
         $this->userService = $userService;
+        $this->newRegisterTracker = $newRegisterTracker;
     }
 
     public function register(Request $request)
@@ -38,5 +42,9 @@ class RegisterController extends Controller
         }
 
         return response()->jsonOk($this->userService->registerUser($request));
+    }
+
+    public function addNewRegister() {
+        return response()->jsonOk($this->newRegisterTracker->addNewRegister());
     }
 }

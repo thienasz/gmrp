@@ -21,11 +21,10 @@ Route::middleware(['cors'])->group(function (){
     Route::middleware(['jwt.auth', 'api-sdk'])->group(function(){
         Route::post('logout','LoginController@logout');
 
-        //Get user details
-        Route::get('userdetails','UserDetailsController@index');
+        Route::post('new-register','RegisterController@addNewRegister');
 
-        //Update user details
-        Route::put('userdetails','UserDetailsController@update');
+        Route::post('pay','UserController@pay');
+
 
         //Check Admin Role
         Route::middleware(['role-admin'])->group(function (){
