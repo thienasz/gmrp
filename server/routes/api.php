@@ -27,19 +27,19 @@ Route::middleware(['cors'])->group(function (){
 
 
         //Check Admin Role
-        Route::middleware(['role-admin'])->group(function (){
-            //Product
-            Route::post('product', 'ProductController@store');
-            Route::post('product/{productID}','ProductController@update');
-            Route::delete('product/{productID}','ProductController@delete');
-
-            Route::get('/user', 'UserController@index');
-
-            //Post
-            Route::post('post', 'PostController@store'); //create
-            Route::post('post/{postID}', 'PostController@update'); //update
-            Route::delete('post/{postID}', 'PostController@delete'); //delete
-        });
+//        Route::middleware(['role-admin'])->group(function (){
+//            //Product
+//            Route::post('product', 'ProductController@store');
+//            Route::post('product/{productID}','ProductController@update');
+//            Route::delete('product/{productID}','ProductController@delete');
+//
+//            Route::get('/user', 'UserController@index');
+//
+//            //Post
+//            Route::post('post', 'PostController@store'); //create
+//            Route::post('post/{postID}', 'PostController@update'); //update
+//            Route::delete('post/{postID}', 'PostController@delete'); //delete
+//        });
 
     });
 
