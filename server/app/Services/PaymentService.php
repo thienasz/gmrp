@@ -30,7 +30,7 @@ class PaymentService extends Service{
 
     public function pay(Request $request){
         $data = $request->only([
-            'agency_id',
+            'description',
             'pay_price',
             'pay_card_type'
         ]);
