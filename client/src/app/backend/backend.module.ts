@@ -20,6 +20,7 @@ import { MaterialModule } from '../shared/material.module';
 import { AppInterceptor } from './services/interceptor.service';
 import { GameService } from './services/game.service';
 import { UserService } from './services/user.service';
+import { ReportService } from './services/report.service';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { UserService } from './services/user.service';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
     GameService,
-    UserService
+    UserService,
+    ReportService,
   ]
 })
 export class BackendModule { }

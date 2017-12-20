@@ -34,6 +34,14 @@ Route::middleware(['cors'])->group(function (){
         Route::post('game', 'GameController@store'); //create
         Route::post('game/{gameID}', 'GameController@update'); //update
         Route::delete('game/{gameID}', 'GameController@delete'); //delete
+
+
+        Route::post('revenue','ReportController@revenue');
+        Route::post('total-revenue','ReportController@totalRevenue');
+        Route::post('account-report','ReportController@accountReport');
+        Route::post('card-revenue','ReportController@cardRevenue');
+        Route::post('agency-revenue','ReportController@agencyRevenue');
+
     });
 
 

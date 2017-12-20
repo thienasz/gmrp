@@ -8,6 +8,12 @@
         <div class="card-body">
           <div class="form-group">
             <div class="row">
+              <div class="col-md-12">
+                  <strong>Average revenue per user:</strong> 12
+              </div>
+              <div class="col-md-12">
+                  <strong>Average revenue per paying user:</strong> 12
+              </div>
               <div class="col-md-4">
                 Từ ngày <input type="date" name="nf" class="form-control">
               </div>
@@ -23,54 +29,24 @@
                 <th>Doanh thu khách hàng</th>
                 <th>Doanh thu sau Telco và trước VAT</th>
                 <th>Paid User</th>
-                <th>ARPU</th>
-                <th>ARPPU</th>
                 <!-- <th>Status</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Game A</td>
-                <td>100</td>
+              <tr *ngFor="let rvn of revenue">
+                <td>{{ rvn.game.name }}</td>
+                <td>{{ rvn.sum_price }}</td>
                 <td>90</td>
-                <td>100</td>
-                <td>90</td>
-                <td>100</td>
-                <!-- <td>
-                  <span class="badge badge-success">Active</span>
-                </td> -->
+                <td>{{ rvn.user_count }}</td>
               </tr>
               <tr>
-                <td>Game B</td>
-                <td>100</td>
-                <td>90</td>
-                <td>100</td>
-                <td>90</td>
-                <td>100</td>
-                <!-- <td>
-                  <span class="badge badge-success">Active</span>
-                </td> -->
-              </tr>
-              <tr>
-                  <td><strong>Total</strong></td>
-                  <td>200</td>
-                  <td>180</td>
-                  <td>200</td>
-                  <td>180</td>
-                  <td>200</td>
+                  <td><strong>Total</strong>></td>
+                  <td>{{ totalRevenue?.sum_price }}</td>
+                  <td>90</td>
+                  <td>{{ totalRevenue?.user_count }}</td>
                 </tr>
             </tbody>
           </table>
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-            <li class="page-item active">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
         </div>
       </div>
     </div>
@@ -98,9 +74,9 @@
               </div>
             </div>
   
-            <div><strong>New Register User:	&nbsp;</strong>20</div>
-            <div><strong>Daily Active User:	&nbsp;</strong>20</div>
-            <div class="form-inline"><strong>Current Active User:	&nbsp;</strong>20	&nbsp;
+            <div><strong>New Register User:	&nbsp;</strong>{{ acc.nru }}</div>
+            <div><strong>Daily Active User:	&nbsp;</strong>{{ acc.dau }}</div>
+            <div class="form-inline"><strong>Current Active User:	&nbsp;</strong>{{ acc.ccu }}	&nbsp;
               <strong>At:&nbsp;</strong>
               <input type="datetime-local" name="nf" class="form-control" value="2017-12-18T08:30">
             </div>
@@ -112,9 +88,9 @@
               <input type="month" name="nf" class="form-control" value="2017-12">
             </div>
           </div>
-          <div><strong>Total Register User:	&nbsp;</strong>20</div>
-          <div><strong>Monthly Active User:	&nbsp;</strong>20</div>
-          <div><strong>Monthly Loss Active User:	&nbsp;</strong>20</div>
+          <div><strong>Total Register User:	&nbsp;</strong>{{ acc.tru }}</div>
+          <div><strong>Monthly Active User:	&nbsp;</strong>{{ acc.mau }}</div>
+          <div><strong>Monthly Loss Active User:	&nbsp;</strong>{{ acc.mlau }}</div>
         </div>
       </div>
     </div>
@@ -145,36 +121,15 @@
                 <th>Doanh thu khách hàng</th>
                 <th>Doanh thu sau Telco và trước VAT</th>
                 <th>Paid User</th>
-                <th>ARPU</th>
-                <th>ARPPU</th>
-                <!-- <th>Status</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Viettel</td>
-                <td>100</td>
+              <tr *ngFor="let cr of card">
+                <td>{{ cr.payment_type.name }}</td>
+                <td>{{ cr.sum_price }}</td>
                 <td>90</td>
-                <td>100</td>
-                <td>90</td>
-                <td>100</td>
+                <td>{{ cr.user_count }}</td>
               </tr>
-              <tr>
-                <td>Mobi</td>
-                <td>100</td>
-                <td>90</td>
-                <td>100</td>
-                <td>90</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                  <td><strong>Total</strong></td>
-                  <td>200</td>
-                  <td>180</td>
-                  <td>200</td>
-                  <td>180</td>
-                  <td>200</td>
-                </tr>
             </tbody>
           </table>
         </div>
@@ -192,6 +147,13 @@
         <div class="card-body">
           <div class="form-group">
             <div class="row">
+              <div class="col-md-12">
+                  <strong _ngcontent-c3="">New Register User:	&nbsp;</strong> 12
+              </div>
+              <div class="col-md-12">
+                  <strong _ngcontent-c3="">Average revenue per paying user:	&nbsp;</strong> 12
+              </div>
+
               <div class="col-md-4">
                 Từ ngày <input type="date" name="nf" class="form-control">
               </div>
@@ -213,7 +175,6 @@
               <tr>
                 <th>Game</th>
                 <th>Lượt cài đặt</th>
-                <th>NRU</th>
                 <th>Doanh thu khách hàng</th>
                 <th>Tỷ lệ chia sẻ</th>
                 <th>Doanh thu Agency</th>
@@ -222,11 +183,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Game A</td>
-                <td>100</td>
+              <tr *ngFor="let agc of agency">
+                <td>{{ agc.game.name }}</td>
+                <td>{{ agc.game.registers_count }}</td>
                 <td>90</td>
-                <td>100</td>
                 <td>90</td>
                 <td>100</td>
                 <td>100</td>

@@ -18,6 +18,7 @@ class CreateAgenciesTable extends Migration
                 $table->increments('id');
                 $table->string('name')->unique();
                 $table->string('description', 1000)->nullable();
+                $table->integer('percent_share');
                 $table->timestamps();
             });
     }

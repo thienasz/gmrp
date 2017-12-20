@@ -94,6 +94,19 @@ class LoginController extends Controller
         return response()->jsonOk(["token"=>$token,"profile"=>$user, "expire" => $exp]);
     }
 
+    public function refresh(){
+        $token = JWTAuth::getToken();
+        $new_token = JWTAuth::refresh($token);
+
+        return response()->jsonOk(["token"=>$new_token]);
+    }
+
+    public function offline(){
+        $this->gameSessionTrackerService->endGameSession();
+
+        return response()->jsonOk("Ok");
+    }
+
     public function logout(){
         $token = JWTAuth::getToken();
         if ($token){

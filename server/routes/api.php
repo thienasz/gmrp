@@ -17,9 +17,12 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::middleware(['cors'])->group(function (){
+Route::middleware(['cors'])->group(function () {
+    Route::post('refresh', 'LoginController@refresh');
+
     Route::middleware(['jwt.auth', 'api-sdk'])->group(function(){
         Route::post('logout','LoginController@logout');
+        Route::post('offline','LoginController@offline');
 
         Route::post('new-register','RegisterController@addNewRegister');
 

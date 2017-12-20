@@ -61,8 +61,8 @@ class GameSessionTrackerService extends Service{
         $data['game_id'] = Auth::user()->game_id;
         $data['user_id'] = Auth::user()->id;
         $data['is_online'] = 1;
-        $data['login_at'] = \Carbon::now();
-        $data['login_code'] = encrypt(implode('-', [$data['game_id'], $data['user_id'], $data['login_at']]));
+        $data['login_at'] = \Carbon\Carbon::now();
+//        $data['login_code'] = encrypt(implode('-', [$data['game_id'], $data['user_id'], $data['login_at']]));
 
         return $this->gameSessionModel->create($data);
     }
@@ -75,12 +75,13 @@ class GameSessionTrackerService extends Service{
                 'is_online' => 1,
             ])->whereNull('logout_at')->first();
         if(!$session) {
-            throw new Exception('Session not found');
+            return null;
+//            throw new Exception('Session not found');
         }
         $data = [
             'game_id' => Auth::user()->game_id,
             'user_id' => Auth::user()->id,
-            'logout_at' => \Carbon::now(),
+            'logout_at' => \Carbon\Carbon::now(),
             'is_online' => 0,
         ];
 
