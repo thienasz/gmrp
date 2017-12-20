@@ -39,7 +39,7 @@ class TransformerProvider extends ServiceProvider
             );
         });
 
-        response()->macro('jsonError', function ($msg, $status = 500, array $headers = []) use ($fractal) {
+        response()->macro('jsonError', function ($msg, $status = 200, array $headers = []) use ($fractal) {
             $data = new \stdClass();
             $data->message = $msg;
             $data->code = 0;
