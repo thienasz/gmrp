@@ -74,10 +74,14 @@ class LoginController extends Controller
             'fb_uid'=>'required',
             'fb_token'=>'required',
             'game_id'=>'required|exists:games,id',
+            'os_type' => 'required',
+            'os_version' => 'required'
         ], [
             'fb_uid'=>'required',
             'fb_token'=>'required',
             'game_id'=>'required|exists:games,id',
+            'os_type' => 'required',
+            'os_version' => 'required'
         ]);
 
         $token = $this->userService->fbLoginUser($request);

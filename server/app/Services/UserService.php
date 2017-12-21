@@ -49,7 +49,9 @@ class UserService extends Service
             'name'=>$request->name,
             'email'=>$request->email,
             'game_id'=>$request->game_id,
-            'password'=>bcrypt($request->password)
+            'password'=>bcrypt($request->password),
+            'os_type' => $request->os_type,
+            'os_version' => $request->os_version
         ]);
     }
 
@@ -76,13 +78,17 @@ class UserService extends Service
     public function fbLoginUser(Request $request){
         $pass = str_random(8);
         $user = $this->userModel->updateOrCreate(
-            ['fb_uid' => $request['fb_uid']],
+            [
+                'fb_uid' => $request['fb_uid'],
+                'game_id' => $request['game_id']
+            ],
             [
                 'fb_token' =>  $request['fb_token'],
                 'email' => $request['email'],
-                'game_id' => $request['phone'],
                 'password' => bcrypt($pass),
                 'role' => 2,
+                'os_type' => $request['os_type'],
+                'os_version' => $request['os_version'],
             ]
         );
 

@@ -25,11 +25,15 @@ class RegisterController extends Controller
             'game_id'=>'required|exists:games,id',
             'email'=>'required|email|min:6|max:100',
             'password'=>'required|min:6',
+            'os_type' => 'required',
+            'os_version' => 'required'
         ], [
             'name'=>'required',
             'game_id'=>'required|exists:games,id',
             'email'=>'required|email|min:6|max:100',
             'password'=>'required|min:6',
+            'os_type' => 'required',
+            'os_version' => 'required'
         ]);
 
         $user = $this->userService->getUser([
