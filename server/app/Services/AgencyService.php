@@ -32,8 +32,7 @@ class AgencyService extends Service{
     }
 
     public function createAgency(Request $request){
-        $data = $request->only(['name', 'description']);
-        $data['status'] = 1;
+        $data = $request->only(['name', 'description', 'percent_share']);
         return $this->agencyModel->create($data);
     }
 

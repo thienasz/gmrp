@@ -17,11 +17,9 @@ class CreateDevicesTable extends Migration {
         {
             $table->increments('id');
             $table->timestamps();
-            $table->string('uid');
-            $table->integer('user_id');
-            $table->string('browser')->nullable();
-            $table->string('platform')->nullable();
-            $table->string('device')->nullable();
+            $table->string('device_uid', 1000);
+            $table->string('os_type')->nullable();
+            $table->string('os_version')->nullable();
         });
     }
 

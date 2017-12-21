@@ -33,6 +33,7 @@ class AgencyController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'description' => 'required',
+            'percent_share' => 'required',
         ]);
 
         $agency = $this->agencyService->createAgency($request);
@@ -44,6 +45,7 @@ class AgencyController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'description' => 'required',
+            'percent_share' => 'required',
         ]);
 
         //Check agency exits

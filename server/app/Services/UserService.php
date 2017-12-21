@@ -8,6 +8,7 @@
  */
 
 namespace App\Services;
+use App\Models\Device;
 use App\Models\User;
 use App\Models\UserDetails;
 use Illuminate\Http\Request;
@@ -20,11 +21,17 @@ class UserService extends Service
 {
     private $userModel;
     private $userDetails;
+    /**
+     * @var Device
+     */
+    private $device;
 
-    function __construct(User $userModel, UserDetails $userDetails)
+    function __construct(User $userModel, UserDetails $userDetails,
+                        Device $device)
     {
         $this->userModel = $userModel;
         $this->userDetails = $userDetails;
+        $this->device = $device;
     }
 
     public function getAllUser($perPage = 15, $role = false)
@@ -45,14 +52,24 @@ class UserService extends Service
             throw new \Exception('User exists');
         };
 
+        $device = $this->device->firstOrCreate(
+            [
+                'device_uid' => $request['device_uid']
+            ],
+            [
+                'os_type' => $request['os_type'],
+                'os_version' => $request['os_version'],
+            ]
+        );
+
         return $this->userModel->create([
+            'device_id' => $device->id,
             'name'=>$request->name,
             'email'=>$request->email,
             'game_id'=>$request->game_id,
             'password'=>bcrypt($request->password),
-            'os_type' => $request->os_type,
-            'os_version' => $request->os_version
         ]);
+
     }
 
     public function getUser($data){
@@ -77,18 +94,28 @@ class UserService extends Service
 
     public function fbLoginUser(Request $request){
         $pass = str_random(8);
+
+        $device = $this->device->firstOrCreate(
+            [
+                'device_uid' => $request['device_uid']
+            ],
+            [
+                'os_type' => $request['os_type'],
+                'os_version' => $request['os_version'],
+            ]
+        );
+
         $user = $this->userModel->updateOrCreate(
             [
                 'fb_uid' => $request['fb_uid'],
                 'game_id' => $request['game_id']
             ],
             [
+                'device_id' => $device->id,
                 'fb_token' =>  $request['fb_token'],
                 'email' => $request['email'],
                 'password' => bcrypt($pass),
                 'role' => 2,
-                'os_type' => $request['os_type'],
-                'os_version' => $request['os_version'],
             ]
         );
 

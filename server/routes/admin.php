@@ -35,6 +35,11 @@ Route::middleware(['cors'])->group(function (){
         Route::post('game/{gameID}', 'GameController@update'); //update
         Route::delete('game/{gameID}', 'GameController@delete'); //delete
 
+        //Agency
+        Route::get('agency', 'AgencyController@index'); //create
+        Route::post('agency', 'AgencyController@store'); //create
+        Route::post('agency/{agencyID}', 'AgencyController@update'); //update
+        Route::delete('agency/{agencyID}', 'AgencyController@delete'); //delete
 
         Route::post('revenue','ReportController@revenue');
         Route::post('total-revenue','ReportController@totalRevenue');

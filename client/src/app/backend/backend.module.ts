@@ -21,6 +21,8 @@ import { AppInterceptor } from './services/interceptor.service';
 import { GameService } from './services/game.service';
 import { UserService } from './services/user.service';
 import { ReportService } from './services/report.service';
+import { AgencyService } from './services/agency.service';
+import { AgencyComponent } from './agency/agency.component';
 
 @NgModule({
   imports: [
@@ -43,13 +45,15 @@ import { ReportService } from './services/report.service';
     BackendComponent, 
     UserComponent, 
     DashboardComponent,
-    GameComponent
+    GameComponent,
+    AgencyComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
     GameService,
     UserService,
     ReportService,
+    AgencyService
   ]
 })
 export class BackendModule { }
