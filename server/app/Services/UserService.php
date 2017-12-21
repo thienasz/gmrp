@@ -68,6 +68,7 @@ class UserService extends Service
             'email'=>$request->email,
             'game_id'=>$request->game_id,
             'password'=>bcrypt($request->password),
+            'agency_id'=>$request->agency_id
         ]);
 
     }
