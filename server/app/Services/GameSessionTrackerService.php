@@ -59,6 +59,7 @@ class GameSessionTrackerService extends Service{
         ]);
 
         $data['game_id'] = Auth::user()->game_id;
+        $data['agency_id'] = Auth::user()->agency_id;
         $data['user_id'] = Auth::user()->id;
         $data['is_online'] = 1;
         $data['login_at'] = \Carbon\Carbon::now();
@@ -72,6 +73,7 @@ class GameSessionTrackerService extends Service{
         $session = $this->gameSessionModel->where([
                 'game_id' => Auth::user()->game_id,
                 'user_id' => Auth::user()->id,
+                'agency_id' => Auth::user()->agency_id,
                 'is_online' => 1,
             ])->whereNull('logout_at')->first();
         if(!$session) {
