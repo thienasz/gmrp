@@ -113,6 +113,7 @@ class UserService extends Service
             ],
             [
                 'device_id' => $device->id,
+                'agency_id' => $request['agency_id'],
                 'fb_token' =>  $request['fb_token'],
                 'email' => $request['email'],
                 'password' => bcrypt($pass),

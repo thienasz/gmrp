@@ -33,7 +33,7 @@ class CreateGameSessionTrackerTable extends Migration
                 $table->tinyInteger('robot')->nullable();
                 $table->string('device_uid')->nullable();
                 $table->string('login_code')->nullable();
-                $table->integer('agency_id');
+                $table->integer('agency_id')->nullable();
                 $table->timestamps();
             });
     }

@@ -18,7 +18,7 @@ class CreateNewRegisterTrackerTable extends Migration
                 $table->increments('id');
                 $table->integer('game_id');
                 $table->integer('user_id');
-                $table->integer('agency_id');
+                $table->integer('agency_id')->nullable();
                 $table->timestamps();
             });
     }
