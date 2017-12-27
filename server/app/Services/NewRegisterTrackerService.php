@@ -14,6 +14,7 @@ use App\Models\GameMonthlyReport;
 use App\Models\GameSessionTracker;
 use App\Models\NewRegisterTracker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use League\Flysystem\Exception;
 
 class NewRegisterTrackerService extends Service{
