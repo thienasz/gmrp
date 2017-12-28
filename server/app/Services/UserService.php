@@ -26,12 +26,11 @@ class UserService extends Service
      */
     private $device;
 
-    function __construct(User $userModel, UserDetails $userDetails,
-                        Device $device)
+    function __construct(User $userModel, UserDetails $userDetails)
     {
         $this->userModel = $userModel;
         $this->userDetails = $userDetails;
-        $this->device = $device;
+//        $this->device = $device;
     }
 
     public function getAllUser($perPage = 15, $role = false)
@@ -52,23 +51,26 @@ class UserService extends Service
             throw new \Exception('User exists');
         };
 
-        $device = $this->device->firstOrCreate(
-            [
-                'device_uid' => $request['device_uid']
-            ],
-            [
-                'os_type' => $request['os_type'],
-                'os_version' => $request['os_version'],
-            ]
-        );
+//        $device = $this->device->firstOrCreate(
+//            [
+//                'device_uid' => $request['device_uid']
+//            ],
+//            [
+//                'os_type' => $request['os_type'],
+//                'os_version' => $request['os_version'],
+//            ]
+//        );
 
         return $this->userModel->create([
-            'device_id' => $device->id,
+//            'device_id' => $device->id,
             'name'=>$request->name,
             'email'=>$request->email,
             'game_id'=>$request->game_id,
             'password'=>bcrypt($request->password),
-            'agency_id'=>$request->agency_id
+            'agency_id'=>$request->agency_id,
+            'os_type' => $request['os_type'],
+            'os_version' => $request['os_version'],
+            'device_uid' => $request['device_uid']
         ]);
 
     }
@@ -96,15 +98,15 @@ class UserService extends Service
     public function fbLoginUser(Request $request){
         $pass = str_random(8);
 
-        $device = $this->device->firstOrCreate(
-            [
-                'device_uid' => $request['device_uid']
-            ],
-            [
-                'os_type' => $request['os_type'],
-                'os_version' => $request['os_version'],
-            ]
-        );
+//        $device = $this->device->firstOrCreate(
+//            [
+//                'device_uid' => $request['device_uid']
+//            ],
+//            [
+//                'os_type' => $request['os_type'],
+//                'os_version' => $request['os_version'],
+//            ]
+//        );
 
         $user = $this->userModel->updateOrCreate(
             [
@@ -112,7 +114,7 @@ class UserService extends Service
                 'game_id' => $request['game_id']
             ],
             [
-                'device_id' => $device->id,
+//                'device_id' => $device->id,
                 'agency_id' => $request['agency_id'],
                 'fb_token' =>  $request['fb_token'],
                 'email' => $request['email'],

@@ -10,7 +10,7 @@ namespace App\Services;
 
 use App\Models\Game;
 use App\Models\GameDailyReport;
-use App\Models\GameMonthlyReport;
+use App\Models\GameAgency;
 use App\Models\GameSessionTracker;
 use App\Models\NewRegisterTracker;
 use App\Models\Payment;

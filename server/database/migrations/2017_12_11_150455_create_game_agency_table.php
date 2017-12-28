@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRevenueAgencyTable extends Migration
+class CreateGameAgencyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateRevenueAgencyTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('revenue_agency'))
-            Schema::create('revenue_agency', function (Blueprint $table) {
+        if (!Schema::hasTable('game_agency'))
+            Schema::create('game_agency', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('game_id');
                 $table->integer('agency_id');
                 $table->integer('percent_share');
-                $table->dateTime('total_user');
                 $table->timestamps();
             });
     }
@@ -31,6 +30,6 @@ class CreateRevenueAgencyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('revenue_agency');
+        Schema::dropIfExists('game_agency');
     }
 }

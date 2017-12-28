@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class NewRegisterTracker extends Model
+class GameAgency extends Model
 {
-    protected $table = 'new_register_tracker';
+    protected $table = 'game_agency';
 
     protected $guarded= [];
 }

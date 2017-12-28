@@ -10,7 +10,7 @@ namespace App\Services;
 
 use App\Models\Game;
 use App\Models\GameDailyReport;
-use App\Models\GameMonthlyReport;
+use App\Models\GameAgency;
 use App\Models\GameSessionTracker;
 use App\Models\Payment;
 use App\Models\User;
@@ -26,7 +26,7 @@ class GameReportService extends Service{
     private $gameSessionModel;
 
     public function __construct(
-        GameMonthlyReport $gameMonthlyReport,
+        GameAgency $gameMonthlyReport,
         GameDailyReport $gameDailyReport,
         Payment $payment,
         User $user,

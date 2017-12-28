@@ -10,7 +10,7 @@ namespace App\Services;
 
 use App\Models\Game;
 use App\Models\GameDailyReport;
-use App\Models\GameMonthlyReport;
+use App\Models\GameAgency;
 use App\Models\GameSessionTracker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,13 +23,12 @@ class GameSessionTrackerService extends Service{
 
     public function __construct(
         GameSessionTracker $gameSessionModel,
-        GameMonthlyReport $gameMonthlyReport,
-        GameDailyReport $gameDailyReport
+        GameAgency $gameAgency
     )
     {
         $this->gameSessionModel = $gameSessionModel;
-        $this->gameDaily = $gameDailyReport;
-        $this->gameMonthly = $gameMonthlyReport;
+//        $this->gameDaily = $gameDailyReport;
+        $this->gameMonthly = $gameAgency;
     }
 
     public function getAllGame($perPage = 15){
@@ -48,14 +47,10 @@ class GameSessionTrackerService extends Service{
         $data = $request->only([
             'last_activity',
             'ip',
-            'browser',
-            'browser_version',
-            'platform',
-            'platform_version',
-            'device',
-            'location',
-            'robot',
+            'os_type',
+            'os_version',
             'device_uid',
+            'location'
         ]);
 
         $data['game_id'] = Auth::user()->game_id;
@@ -63,6 +58,10 @@ class GameSessionTrackerService extends Service{
         $data['user_id'] = Auth::user()->id;
         $data['is_online'] = 1;
         $data['login_at'] = \Carbon\Carbon::now();
+
+        $data['os_type'] = $request['os_type'];
+                $data['os_version'] = $request['os_version'];
+                $data['device_uid'] = $request['device_uid'];
 //        $data['login_code'] = encrypt(implode('-', [$data['game_id'], $data['user_id'], $data['login_at']]));
 
         return $this->gameSessionModel->create($data);

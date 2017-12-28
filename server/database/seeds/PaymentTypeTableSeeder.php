@@ -11,6 +11,8 @@ class PaymentTypeTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\PaymentType::class, 3)->create();
+        if(\App\Models\PaymentType::all()->count() == 0){
+            factory(App\Models\PaymentType::class, 3)->create();
+        }
     }
 }

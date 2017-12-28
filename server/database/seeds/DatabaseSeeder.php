@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
         $this->call(AgencyTableSeeder::class);
         $this->call(PaymentTypeTableSeeder::class);
         $this->call(GameTableSeeder::class);
+        $this->call(GameAgencyTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(UserDetailsSeeder::class);
 
 
         $this->call(PaymentTableSeeder::class);
         $this->call(GameSessionTrackerTableSeeder::class);
-        $this->call(NewRegisterTrackerTableSeeder::class);
     }
 }

@@ -25,12 +25,18 @@ class LoginController extends Controller
     {
         $this->validate($request, [
             'password'=>'required',
-            'game_id'=>'required',
+            'game_id'=>'required|exists:games,id',
             'email'=>'required|email|min:6|max:100',
+            'os_type' => 'required',
+            'os_version' => 'required',
+            'device_uid' => 'required'
         ], [
             'password'=>'required',
-            'game_id'=>'required',
+            'game_id'=>'required|exists:games,id',
             'email'=>'required|email|min:6|max:100',
+            'os_type' => 'required',
+            'os_version' => 'required',
+            'device_uid' => 'required'
         ]);
         $token = $this->userService->loginUser($request);
 

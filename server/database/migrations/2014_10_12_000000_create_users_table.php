@@ -23,7 +23,9 @@ class CreateUsersTable extends Migration
                 $table->string('email')->nullable();
                 $table->string('password')->nullable();
                 $table->string('game_id')->nullable();
-                $table->integer('device_id')->nullable();
+                $table->string('device_uid', 1000)->nullable();
+                $table->string('os_type')->nullable();
+                $table->string('os_version')->nullable();
                 $table->integer('agency_id')->nullable();
                 $table->boolean('role')->default(0);
                 $table->rememberToken();

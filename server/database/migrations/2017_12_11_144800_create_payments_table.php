@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
                 $table->increments('id');
                 $table->integer('game_id');
                 $table->integer('user_id');
-                $table->integer('agency_id');
+                $table->integer('agency_id')->nullable();
                 $table->integer('pay_card_type');
                 $table->float('pay_price', 16);
                 $table->timestamps();

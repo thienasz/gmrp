@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class NewRegisterTrackerTableSeeder extends Seeder
+class GameAgencyTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class NewRegisterTrackerTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\NewRegisterTracker::class, 50)->create();
+        factory(App\Models\GameAgency::class, 5)->create();
     }
 }
