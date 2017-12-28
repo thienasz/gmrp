@@ -18,12 +18,82 @@ class ReportController extends Controller
     }
 
     public function revenue(Request $request){
-        $startDate = $request->start_date;
-        $endDate = $request->end_date;
-
-        $revenue = $this->reportService->revenue($startDate, $endDate);
+        $revenue = (object)[
+            "revenue" => "100",
+            "revenue_telco" => "90",
+        ];
 
         return response()->jsonOk($revenue);
+    }
+
+    public function registerUser(Request $request){
+        $data = (object)[
+            "ru" => "100"
+        ];
+
+        return response()->jsonOk($data);
+    }
+
+    public function activeUser(Request $request){
+        $data = (object)[
+            "au" => "100"
+        ];
+
+        return response()->jsonOk($data);
+    }
+
+    public function currentActiveUser(Request $request){
+        $data = (object)[
+            "ccu" => "100"
+        ];
+
+        return response()->jsonOk($data);
+    }
+
+    public function paidUser(Request $request){
+        $data = (object)[
+            "pu" => "100"
+        ];
+
+        return response()->jsonOk($data);
+    }
+
+    public function userReport(Request $request){
+        $data = (object)[
+            "ru" => "100",
+            "au" => "100",
+            "ccu" => "100",
+            "pu" => "100",
+        ];
+
+        return response()->jsonOk($data);
+    }
+
+    public function paymentCard(Request $request){
+        $data = [
+            (object)[
+                "name" => "Viettel",
+                "total_price" => "100"
+            ],
+            (object)[
+                "name" => "Vina",
+                "total_price" => "100"
+            ],
+            (object)[
+                "name" => "Mobi",
+                "total_price" => "100"
+            ],
+        ];
+
+        return response()->jsonOk($data);
+    }
+
+    public function totalInstall(Request $request){
+        $data = (object)[
+            "install" => "200",
+        ];
+
+        return response()->jsonOk($data);
     }
 
     public function totalRevenue(Request $request){

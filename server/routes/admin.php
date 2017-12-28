@@ -42,6 +42,14 @@ Route::middleware(['cors'])->group(function (){
         Route::delete('agency/{agencyID}', 'AgencyController@delete'); //delete
 
         Route::post('revenue','ReportController@revenue');
+        Route::post('ru','ReportController@registerUser');
+        Route::post('ac','ReportController@activeUser');
+        Route::post('ccu','ReportController@currentActiveUser');
+        Route::post('pu','ReportController@paidUser');
+        Route::post('user/report','ReportController@userReport');
+        Route::post('payment-card','ReportController@paymentCard');
+        Route::post('total-install','ReportController@totalInstall');
+
         Route::post('total-revenue','ReportController@totalRevenue');
         Route::post('account-report','ReportController@accountReport');
         Route::post('card-revenue','ReportController@cardRevenue');

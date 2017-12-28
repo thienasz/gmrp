@@ -6,6 +6,8 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,7 +50,11 @@ class Handler extends ExceptionHandler
         if (env('APP_DEBUG') === false) {
             $e = $this->prepareException($exception);
 
-            if ($e instanceof AuthenticationException) {
+            if ($e instanceof TokenExpiredException) {
+                return response()->jsonError("Token expired", 200, 2);
+            } elseif ($e instanceof NotFoundHttpException) {
+                return response()->jsonError("Not Found");
+            } elseif ($e instanceof AuthenticationException) {
                 return response()->jsonError("Unauthenticated");
             } elseif ($e instanceof ValidationException) {
                 $errors = $e->validator->errors()->first();
