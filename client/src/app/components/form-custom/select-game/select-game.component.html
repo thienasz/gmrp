@@ -1,0 +1,16 @@
+<mat-form-field>
+  <input type="text" [formControl]="gameTem" matInput placeholder="Chọn game" [matAutocomplete]="autoGame1">
+</mat-form-field>
+
+<mat-autocomplete #autoGame1="matAutocomplete">
+  <mat-option (onSelectionChange)="onChange($event, option)" *ngFor="let option of games" [value]="option.name">
+    {{ option.name }}
+  </mat-option>
+</mat-autocomplete>
+<!-- <mat-form-field>
+    <mat-select placeholder="Favorite food">
+        <mat-option (selected)="onChange($event, option)" *ngFor="let option of games" [value]="option.name">
+            {{ option.name }}
+          </mat-option>
+    </mat-select>
+  </mat-form-field> -->

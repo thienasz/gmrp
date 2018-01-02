@@ -1,0 +1,41 @@
+<div class="app-navbar mat-elevation-z6">
+  <nav class="navbar-header">
+      <div class="brand-sidebar mat-elevation-z6 hide-small">
+          <a  class="minimized-hidden" href="#">
+            <!-- <div class="logo-img">
+              <img src="/assets/img/angular2-logo-red.png">
+            </div> -->
+            <!-- <i class="material-icons">home</i>
+            <span>Hello</span> -->
+            <img src="http://keenthemes.com/metronic/preview/assets/demo/default/media/img/logo/logo_default_dark.png">
+          </a>
+          <span class="btn-toggle">
+              <i class="material-icons" appSidebarMinimizer>format_align_justify</i>
+          </span>
+        </div>
+    <div class="brand-sidebar show-small">
+      <span class="btn-toggle">
+        <i class="material-icons" appMobileSidebarToggler>format_align_justify</i>
+      </span>
+      <a href="#">
+        <img src="http://keenthemes.com/metronic/preview/assets/demo/default/media/img/logo/logo_default_dark.png">
+      </a>
+    </div>
+    <!-- <a class="hide-small" mat-button routerLink="/admin/dashboard">
+      Dashboard
+    </a> -->
+    <div class="flex-spacer"></div>
+    <span>{{ auth.currentUser.username }}</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+    &nbsp;&nbsp;
+    &nbsp;&nbsp;
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item routerLink="/auth/logout">
+        <mat-icon>remove_circle</mat-icon>
+        <span>Logout</span>
+      </a>
+    </mat-menu>
+  </nav>
+</div>

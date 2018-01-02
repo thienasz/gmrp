@@ -1,59 +1,45 @@
-import { Component, TemplateRef, OnInit, ViewChild } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { GameService } from '../services/game.service';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { DialogGameForm } from './game-form/game-form.component';
+import { MatDialog } from '@angular/material';
+import { GameService } from './game.service';
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  @ViewChild('smallModal') smallModal: BsModalRef;
+  game: any;
+  games: any;
 
-  createGameForm: FormGroup;
   currentPage:number = 1;
   totalItems:number = 0;
   itemsPerPage: number = 15; 
 
   constructor(
-    private gameService: GameService,
-    private activeRoute: ActivatedRoute,
-    private fb: FormBuilder,
+    public dialog: MatDialog,
+    private gameService: GameService
   ) {}
- 
-  // openModal(template: TemplateRef<any>) {
-  //   this.modalRef = this.modalService.show(template, {
-  //     class: "show"
-  //   });
-  // }
 
-  games: Array<any> = [];
+  openDialog(): void {
+    let dialogRef = this.dialog.open(DialogGameForm, {
+      width: '350px',
+      data: { game: this.game }
+    });
 
-  ngOnInit() {
-    this.createGameForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required]
-    })
-    this.getGames();
+    dialogRef.afterClosed().subscribe(result => {
+      this.getGames();
+    });
   }
 
-  onSubmit() {
-    if(this.createGameForm.valid) {
-      this.gameService.create(this.createGameForm.value).subscribe(
-        (req) => {
-          console.log(req);
-          this.smallModal.hide();
-          this.getGames();
-        }
-      )
-    }
+  ngOnInit() {
+    this.getGames();
   }
 
   pageChanged($event) {
     console.log(this.currentPage);
     console.log($event);
-    this.currentPage = $event.page;
+    this.currentPage = $event.pageIndex + 1;
     this.getGames();
   }
 

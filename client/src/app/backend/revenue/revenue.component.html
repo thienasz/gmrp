@@ -1,0 +1,76 @@
+<div class="card-viewer">
+    <div class="card-viewer-wrapper">
+      <div class="card-viewer-title">
+        Doanh thu theo ngay
+      </div>
+      <div class="card-viewer-body">
+          <div class="option-choose">
+              <mat-form-field>
+                  <input [formControl]="reDayTimeControl" matInput [matDatepicker]="picker" placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <app-select-game [game]="reDayGameControl"></app-select-game>
+          </div>
+        <div class="day-revenue clearfix">
+            <ngx-charts-number-card
+            [results]="dayRevenue">
+          </ngx-charts-number-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="card-viewer">
+  <div class="card-viewer-wrapper">
+    <div class="card-viewer-title">
+      Thống kê theo tháng
+    </div>
+    <div class="card-viewer-body">
+      <div class="month-choose">
+          <app-year-input [year]="reYearTimeControl"></app-year-input>
+           <app-select-game [game]="reYearGameControl"></app-select-game>
+           
+           <mat-radio-group [formControl]="optionControl">
+              <mat-radio-button value="1">Doanh thu</mat-radio-button>
+              <mat-radio-button value="2">Doanh Thu tecol</mat-radio-button>
+              <mat-radio-button value="3">Paid User</mat-radio-button>
+            </mat-radio-group>
+      </div>
+      <div class="year-revenue mb-1">
+        <strong>Total Year: </strong> 33490000000
+      </div>
+      <div class="mb-3 chart-wrapper" #chart>
+          <ngx-charts-bar-vertical
+            [view]="[chart.offsetWidth, 400]"
+            [results]="monthRevenue"
+            xAxis="true"
+            yAxis="true"
+            legend="true"
+            showXAxisLabel="true"
+            showYAxisLabel="true"
+            xAxisLabel="Thang"
+            yAxisLabel="Doanh Thu">
+          </ngx-charts-bar-vertical>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Thang</th>
+            <th>Doanh thu</th>
+            <th>Doanh thu Telco</th>
+            <th>Paid User</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let revenue of monthTable">
+            <th scope="row">{{ revenue.id }}</th>
+            <td>{{ revenue.revenue }}</td>
+            <td>{{ revenue.telco }}</td>
+            <td>{{ revenue.pu }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

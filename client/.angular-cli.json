@@ -1,13 +1,16 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "coreui-angular"
+    "name": "material-layout"
   },
   "apps": [
     {
       "root": "src",
       "outDir": "dist",
-      "assets": ["assets"],
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -16,15 +19,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/font-awesome/css/font-awesome.css",
-        "../node_modules/simple-line-icons/css/simple-line-icons.css",
-        "scss/style.scss",
+        "styles.scss",
         "../node_modules/ngx-toastr/toastr.css"
       ],
-      "scripts": [
-        "../node_modules/chart.js/dist/Chart.bundle.min.js",
-        "../node_modules/chart.js/dist/Chart.min.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -39,13 +37,16 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json"
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
     },
     {
-      "project": "src/tsconfig.spec.json"
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
     },
     {
-      "project": "e2e/tsconfig.e2e.json"
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
     }
   ],
   "test": {
@@ -55,6 +56,6 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "prefixInterfaces": false
+    "component": {}
   }
 }

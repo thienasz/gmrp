@@ -1,0 +1,15 @@
+<div class="form-full-container">
+    <form [formGroup]="gameForm" (ngSubmit)="onSubmit()" class="form-full">
+        <mat-form-field>
+            <input matInput [formControl]="gameForm.get('name')" placeholder="Name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <textarea matInput [formControl]="gameForm.get('description')" placeholder="Description"></textarea>
+        </mat-form-field>
+
+        <div class="button-container">
+            <button type="submit" mat-raised-button>Submit</button>
+        </div>
+    </form>
+</div>

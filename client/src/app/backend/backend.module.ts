@@ -1,59 +1,46 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 import { BackendRoutingModule } from './backend-routing.module';
-import { BackendComponent } from './backend.component';
-import { UserComponent } from './user/user.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LayoutModule } from './layout/layout.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AsideToggleDirective } from '../shared/aside.directive';
-import { SIDEBAR_TOGGLE_DIRECTIVES } from '../shared/sidebar.directive';
-import { BreadcrumbsComponent } from '../shared/breadcrumb.component';
-import { NAV_DROPDOWN_DIRECTIVES } from '../shared/nav-dropdown.directive';
+import { UserComponent } from './user/user.component';
 import { GameComponent } from './game/game.component';
-import { MaterialModule } from '../shared/material.module';
-import { AppInterceptor } from './services/interceptor.service';
-import { GameService } from './services/game.service';
-import { UserService } from './services/user.service';
-import { ReportService } from './services/report.service';
-import { AgencyService } from './services/agency.service';
 import { AgencyComponent } from './agency/agency.component';
+import { BackendComponent } from './backend.component';
+import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../shared/material.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppInterceptor } from '../shared/services/interceptor.service';
+import { RevenueComponent } from './revenue/revenue.component';
+import { SettingComponent } from './setting/setting.component';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { GameService } from './game/game.service';
+import { RevenueService } from './revenue/revenue.service';
+import { UserService } from './user/user.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    SharedModule,
     BackendRoutingModule,
-    HttpClientModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    ChartsModule,
-    ModalModule.forRoot(),
-    MaterialModule,
-    PaginationModule.forRoot()
+    LayoutModule,
+    NgxChartsModule,
   ],
   declarations: [
-    NAV_DROPDOWN_DIRECTIVES,
-    BreadcrumbsComponent,
-    SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective,
-    BackendComponent, 
-    UserComponent, 
+    BackendComponent,
     DashboardComponent,
-    GameComponent,
-    AgencyComponent
+    UserComponent,
+    // GameComponent,
+    // AgencyComponent,
+    // RevenueComponent,
+    SettingComponent
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
-    GameService,
-    UserService,
-    ReportService,
-    AgencyService
+    // { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+    RevenueService,
+    UserService
+
   ]
 })
 export class BackendModule { }

@@ -1,32 +1,16 @@
-.col-center-block {
-    float: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.login-wrapper {
+    height: 100vh;
+    display: inline-block;
+    width: 100%;
+    background-color: #e4e5e6;
+    .login-container {
+        position: relative;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
 }
-html,
-body,
-.container {
-    height: 100%;
+
+.mat-form-field {
     width: 100%;
 }
-.container {
-    display: table;
-    vertical-align: middle;
-}
-.vertical-center-row {
-    display: table-cell;
-    vertical-align: middle;
-}
-.login-screen-bg {
-    background-color: #fff;
-}
-.panel-git {
-    border: 1px solid #d8dee2;
-}
-    .panel-git h3 {
-        color: #fff;
-    }
-    .panel-git .panel-heading {
-        background-color: #829AA8;
-    }
+    

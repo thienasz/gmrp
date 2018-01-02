@@ -1,20 +1,38 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BackendComponent } from './backend.component';
-import { UserComponent } from './user/user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserComponent } from './user/user.component';
 import { GameComponent } from './game/game.component';
 import { AgencyComponent } from './agency/agency.component';
+import { RevenueComponent } from './revenue/revenue.component';
+import { SettingComponent } from './setting/setting.component';
 
 const routes: Routes = [
   {
     path: '', 
     component: BackendComponent,
     children: [
-      { path: '', component: DashboardComponent },
+      // { path: '', redirectTo: 'revenues', pathMatch: true },
+      { 
+        path: 'dashboard', 
+        loadChildren: 'app/backend/revenue/revenue.module#RevenueModule',
+        // component: DashboardComponent
+      },
       { path: 'users', component: UserComponent },
-      { path: 'games', component: GameComponent },
-      { path: 'agencies', component: AgencyComponent }
+      { path: 'games', 
+        loadChildren: 'app/backend/game/game.module#GameModule',  
+      },
+      { 
+        path: 'agencies', 
+        loadChildren: 'app/backend/agency/agency.module#AgencyModule',
+      },
+      { 
+        path: 'revenues', 
+        // component: BackendComponent,
+        loadChildren: 'app/backend/revenue/revenue.module#RevenueModule',
+      },
+      { path: 'settings', component: SettingComponent }
     ]
   }
 ];

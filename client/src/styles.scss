@@ -1,3 +1,45 @@
-.main {
-    min-height: 530px;
+@import '~bootstrap/scss/bootstrap';
+@import url('~@angular/material/prebuilt-themes/indigo-pink.css');
+@import "./app/backend/layout/_style";
+
+body {
+    padding: 0;
+    margin: 0;
 }
+
+//card 
+.card-viewer {
+    margin-bottom: 1rem;
+    .card-viewer-wrapper {
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+        margin: 4px;
+    }
+    .card-viewer-title {
+        color: rgba(0, 0, 0, 0.54);
+        background: rgba(0, 0, 0, 0.03); 
+        padding: 1rem;    
+    }
+
+    .card-viewer-body {
+        padding: 0.5rem 1rem;
+        background-color: #fff;
+    }
+}
+
+span.middle {
+    display: block;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+  
+.form-full > * {
+    width: 100%;
+}
+
+.button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }

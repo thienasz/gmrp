@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.authService.isAuthenticated()) {
-      this.router.navigate(['/admin']);
-    }
+    // if(this.authService.isAuthenticated()) {
+    //   this.router.navigate(['/admin']);
+    // }
 
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe(
         (req)=> {
           if(req) {
-            this.router.navigate(['/admin']);
+            this.router.navigate(['/admin/dashboard']);
           }
         }
       );

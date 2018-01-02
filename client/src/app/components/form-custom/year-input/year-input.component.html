@@ -1,0 +1,13 @@
+<!-- <mat-form-field>
+    <input type="number" [formControl]="year" [value]="now.getFullYear()" matInput placeholder="Nhận năm thống kê" maxlength="4">
+ </mat-form-field> -->
+
+ <mat-form-field>
+    <input type="text" matInput placeholder="Chọn năm" [matAutocomplete]="autoGame1" [value]="now.getFullYear()">
+  </mat-form-field>
+  
+  <mat-autocomplete #autoGame1="matAutocomplete">
+    <mat-option (onSelectionChange)="onChange($event, option)" *ngFor="let option of years" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
@@ -11,7 +12,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: 'app/backend/backend.module#BackendModule',
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
 ];
 

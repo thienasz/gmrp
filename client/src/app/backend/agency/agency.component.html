@@ -1,104 +1,126 @@
-<div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          Agencys
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6">
-              <button class="btn btn-primary" (click)="smallModal.show()">Create</button>
-            </div>
-            <!-- <div class="col-md-6">
-              <button class="btn btn-primary" (click)="smallModal.show()">Create</button>
-            </div> -->
-            <!--/.col-->
+<div class="card-viewer">
+    <div class="card-viewer-wrapper">
+      <div class="card-viewer-title">
+        Doanh thu theo ngay
+      </div>
+      <div class="card-viewer-body">
+          <div class="option-choose">
+              <mat-form-field>
+                  <input [formControl]="reDayTimeControl" matInput [matDatepicker]="picker" placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <app-select-game [game]="reDayGameControl"></app-select-game>
+                <app-select-agency [agency]="reDayAgencyControl"></app-select-agency>
           </div>
-          <!--/.row-->
-          <br>
-          <table class="table table-responsive table-hover table-outline mb-0">
-            <thead class="thead-default">
-              <tr>
-                <th class="text-center">Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Percent</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let agency of agencies">
-                <td class="text-center">
-                  {{ agency.id }}
-                </td>
-                <td>
-                  {{ agency.name }}
-                </td>
-                <td>
-                  {{ agency.description }}
-                </td>
-                <td>
-                  {{ agency.percent_share }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div *ngIf="currentPage > 1">
-            <p></p>
-            <div class="row app-pagination">
-              <div class="col-xs-12 col-12 col-md-6">
-                <pagination
-                  [totalItems]="totalItems"
-                  [itemsPerPage]="itemsPerPage"
-                  (pageChanged)="pageChanged($event)">
-                </pagination>
-              </div>
-            </div>
-          </div>
+        <div class="day-revenue clearfix">
+            <ngx-charts-number-card
+            [results]="dayRevenue">
+          </ngx-charts-number-card>
         </div>
       </div>
     </div>
-    <!--/.col-->
   </div>
+
+<div class="card-viewer">
+  <div class="card-viewer-wrapper">
+    <div class="card-viewer-title">
+      Thống kê theo tháng
+    </div>
+    <div class="card-viewer-body">
+      <div class="month-choose">
+          <app-year-input [year]="reYearTimeControl"></app-year-input>
+           <app-select-game [game]="reYearGameControl"></app-select-game>
+           <app-select-agency [agency]="reYearAgencyControl"></app-select-agency>
+      </div>
+      <div class="mb-1">
+          <mat-radio-group [formControl]="optionControl">
+              <mat-radio-button value="1">Luot cai</mat-radio-button>
+              <mat-radio-button value="2">NRU</mat-radio-button>
+              <mat-radio-button value="3">Doanh thu khách hàng của agency</mat-radio-button>
+              <mat-radio-button value="4">Doanh thu của agency</mat-radio-button>
+              <mat-radio-button value="5">Doanh thu công ty</mat-radio-button>
+              <mat-radio-button value="6">PU</mat-radio-button>
+            </mat-radio-group>
+      </div>
+      <div class="year-revenue mb-1">
+        <strong>Total Year: </strong> 33490000000
+      </div>
+      <div class="clearfix chart-wrapper" #chart>
+          <ngx-charts-bar-vertical
+            [view]="[chart.offsetWidth, 400]"
+            [results]="monthRevenue"
+            xAxis="true"
+            yAxis="true"
+            legend="true"
+            showXAxisLabel="true"
+            showYAxisLabel="true"
+            xAxisLabel="Thang"
+            yAxisLabel="Doanh Thu">
+          </ngx-charts-bar-vertical>
+      </div>
+      <!-- <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Thang</th>
+            <th>Luot Cai</th>
+            <th>NRU</th>
+            <th>Doanh thu</th>
+            <th>Doanh thu agency</th>
+            <th>Doanh thu company</th>
+            <th>Paid User</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let revenue of monthTable">
+            <th scope="row">{{ revenue.id }}</th>
+            <td>{{ revenue.setup }}</td>
+            <td>{{ revenue.nru }}</td>
+            <td>{{ revenue.re }}</td>
+            <td>{{ revenue.reAgency }}</td>
+            <td>{{ revenue.reCompany }}</td>
+            <td>{{ revenue.pu }}</td>
+          </tr>
+        </tbody>
+      </table> -->
+    </div>
+  </div>
+</div>
+
+<div class="card-viewer">
+    <div class="card-viewer-wrapper">
+      <div class="card-viewer-title">
+        title
+      </div>
+      <div class="card-viewer-body">
+        <div class="mb-3">
+          <button mat-raised-button color="primary" (click)="agency=null;openDialog()">Create</button>
+        </div>
   
- <div bsModal #smallModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-lg">
-     <div class="modal-content">
-       
-        <form [formGroup]="createAgencyForm" (ngSubmit)="onSubmit()">
-            <div class="card">
-                <div class="card-header">
-                  Create new agency
-                </div>
-                <div class="card-body">
-                    <div class="form-group row">
-                      <label class="col-md-3 form-control-label" for="name">Name</label>
-                      <div class="col-md-9">
-                        <input id="name" formControlName="name" class="form-control" placeholder="Enter Name..">
-                        <!-- <span class="help-block">Please enter your email</span> -->
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-md-3 form-control-label" for="description">Description</label>
-                      <div class="col-md-9">
-                        <input formControlName="description" id="description" class="form-control" placeholder="Enter Description..">
-                        <!-- <span class="help-block">Please enter your password</span> -->
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-md-3 form-control-label" for="description">Percent Share</label>
-                      <div class="col-md-9">
-                        <input formControlName="percent_share" type="number" id="percent" class="form-control" placeholder="Enter Percent..">
-                        <!-- <span class="help-block">Please enter your password</span> -->
-                      </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-                  <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-                </div>
-              </div>
-         </form>
-     </div>
-   </div>
- </div>
-  
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let agnecyData of agencies">
+              <th scope="row">{{ agnecyData.id }}</th>
+              <td>{{ agnecyData.name }}</td>
+              <td>{{ agnecyData.description }}</td>
+              <td>
+                <button type="button" mat-button (click)="editAgency(agnecyData)">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <mat-paginator *ngIf="itemsPerPage < totalItems"
+        [length]="totalItems" 
+        [pageSize]="itemsPerPage" 
+        (page)="pageChanged($event)">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>

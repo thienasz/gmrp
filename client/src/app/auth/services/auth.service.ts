@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 export class AuthService {
   public token: string;
   public expire: string;
+  public currentUser: any;
   constructor(
     private http: HttpClient,
     public router: Router) {
@@ -16,26 +17,23 @@ export class AuthService {
     if (currentUser) {
       this.token = currentUser.token;
       this.expire = currentUser.expire;
+      this.currentUser = currentUser;
     }
   }
 
   login(data): Observable<boolean> {
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    // let options = new RequestOptions({ headers: headers });
-    // return this.http.post(PortalConfig.GATEWAY_API + "/token", body, options)
     return this.http.post(AppConfig.GATEWAY_API + "/admin/login", data)
       .map((response: any) => {
         console.log(response);
-        let result = response.data;
-        let token = result.token;
+        let token = response.token;
         
         if (token) {
           this.token = token;
-          this.expire = result.expire;
+          this.expire = response.expire;
 
-          localStorage.setItem('currentUser', JSON.stringify({ username: data.username, token: token, expire: result.expire }));
-          localStorage.setItem('expire', result.expire);
+          this.currentUser = { username: data.username, token: token, expire: response.expire };
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+          localStorage.setItem('expire', response.expire);
           return true;
         } else {
           return false;

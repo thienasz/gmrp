@@ -1,0 +1,9 @@
+<mat-form-field>
+  <input type="text" matInput placeholder="Chọn agency" [matAutocomplete]="auto">
+</mat-form-field>
+
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option (onSelectionChange)="onChange($event, option)" *ngFor="let option of agencies" [value]="option.name">
+    {{ option.name }}
+  </mat-option>
+</mat-autocomplete>
