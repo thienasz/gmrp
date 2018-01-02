@@ -47,21 +47,26 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+         $prefix = $request->route()->getPrefix();
         if (env('APP_DEBUG') === false) {
             $e = $this->prepareException($exception);
 
+            $statusCode = 200;
+            if($prefix == "admin") {
+                $statusCode = 200;
+            }
             if ($e instanceof TokenExpiredException) {
-                return response()->jsonError("Token expired", 200, 2);
+                return response()->jsonError("Token expired", $statusCode, 2);
             } elseif ($e instanceof NotFoundHttpException) {
-                return response()->jsonError("Not Found");
+                return response()->jsonError("Not Found", $statusCode);
             } elseif ($e instanceof AuthenticationException) {
-                return response()->jsonError("Unauthenticated");
+                return response()->jsonError("Unauthenticated", $statusCode);
             } elseif ($e instanceof ValidationException) {
                 $errors = $e->validator->errors()->first();
-                return response()->jsonError($errors);
+                return response()->jsonError($errors, $statusCode);
             }
 
-            return response()->jsonError($e->getMessage());
+            return response()->jsonError($e->getMessage(), $statusCode);
         }
 
         return parent::render($request, $exception);

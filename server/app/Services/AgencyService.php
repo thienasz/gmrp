@@ -9,18 +9,27 @@
 namespace App\Services;
 
 use App\Models\Agency;
+use App\Models\GameAgency;
 use Illuminate\Http\Request;
 
 class AgencyService extends Service{
     private $agencyModel;
+    /**
+     * @var GameAgency
+     */
+    private $gameAgency;
 
-    public function __construct(Agency $agencyModel)
+    public function __construct(
+        Agency $agencyModel,
+        GameAgency $gameAgency
+    )
     {
         $this->agencyModel = $agencyModel;
+        $this->gameAgency = $gameAgency;
     }
 
     public function getAllAgency($perPage = 15){
-        return $this->agencyModel->orderBy('id', 'desc')->paginate($perPage);
+        return $this->agencyModel->with('games')->orderBy('id', 'desc')->paginate($perPage);
     }
 
     public function getSingleAgency($postID){
@@ -32,8 +41,11 @@ class AgencyService extends Service{
     }
 
     public function createAgency(Request $request){
-        $data = $request->only(['name', 'description', 'percent_share']);
-        return $this->agencyModel->create($data);
+        $data = $request->only(['id', 'name', 'description']);
+        $agency = $this->agencyModel->updateOrCreate(
+            ['id' => $data['id']],
+            $data);
+        return $this->gameAgency->syncGame($request['games'], $agency);
     }
 
     public function updateAgency(Request $request, $postID){

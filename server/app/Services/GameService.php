@@ -32,9 +32,10 @@ class GameService extends Service{
     }
 
     public function createGame(Request $request){
-        $data = $request->only(['name', 'description']);
-        $data['status'] = 1;
-        return $this->gameModel->create($data);
+        $data = $request->only(['id', 'name', 'description']);
+        return $this->gameModel->updateOrCreate([
+            'id' => $data['id']
+        ], $data);
     }
 
     public function updateGame(Request $request, $postID){

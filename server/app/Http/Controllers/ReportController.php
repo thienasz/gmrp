@@ -19,11 +19,73 @@ class ReportController extends Controller
 
     public function revenue(Request $request){
         $revenue = (object)[
-            "revenue" => "100",
-            "revenue_telco" => "90",
+            "pu" =>  random_int(1,100),
+            "nru" => random_int(1,100),
+            "revenue" => random_int(3000,5000),
+            "reTelco" => random_int(2,3000),
+            "arpu" => random_int(1,100),
+            "arppu" => random_int(1,100)
         ];
 
         return response()->jsonOk($revenue);
+    }
+
+    public function revenueYear(Request $request) {
+        $res = [];
+
+        for ($i = 1; $i <13; $i++) {
+            $re = random_int(3000,5000);
+            $ret = $re * random_int(40, 100)/100;
+
+            array_push(
+                $res, (object)[
+                    "month" => $i,
+                    "pu" => random_int(1,100),
+                    "revenue" => $re,
+                    "reTelco" => $ret
+                ]
+            );
+        }
+
+        return response()->jsonOk($res);
+    }
+
+
+    public function revenueAgency(Request $request){
+        $revenue = (object)[
+            "pu" =>  random_int(1,100),
+            "nru" => random_int(1,100),
+            "revenue" => random_int(3000,5000),
+            "reTelco" => random_int(2,3000),
+            "arpu" => random_int(1,100),
+            "arppu" => random_int(1,100)
+        ];
+
+        return response()->jsonOk($revenue);
+    }
+
+    public function revenueAgencyYear(Request $request) {
+        $res = [];
+
+        for ($i = 1; $i <13; $i++) {
+            $re = random_int(3000,5000);
+            $rea = $re * random_int(40, 100)/100;
+            $rec = $re - $rea;
+
+            array_push(
+                $res, (object)[
+                "month" => $i,
+                "pu" => random_int(1,100),
+                "setup" => random_int(1,100),
+                "revenue" => $re,
+                "reAgency" => $rea,
+                "reCompany" => $rec,
+                "nru" => random_int(1,100),
+            ]
+            );
+        }
+
+        return response()->jsonOk($res);
     }
 
     public function registerUser(Request $request){

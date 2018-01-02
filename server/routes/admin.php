@@ -42,6 +42,10 @@ Route::middleware(['cors'])->group(function (){
         Route::delete('agency/{agencyID}', 'AgencyController@delete'); //delete
 
         Route::post('revenue','ReportController@revenue');
+        Route::post('revenue-year','ReportController@revenueYear');
+        Route::post('revenue-agency','ReportController@revenueAgency');
+        Route::post('revenue-agency-year','ReportController@revenueAgencyYear');
+
         Route::post('ru','ReportController@registerUser');
         Route::post('ac','ReportController@activeUser');
         Route::post('ccu','ReportController@currentActiveUser');

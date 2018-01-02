@@ -22,4 +22,8 @@ class Agency extends Model
     public function payments() {
         return $this->hasMany('App\Models\Payment', 'agency_id');
     }
+
+    public function games() {
+        return $this->belongsToMany('App\Models\Game', 'game_agency', 'agency_id', 'game_id')->withPivot('percent_share');
+    }
 }

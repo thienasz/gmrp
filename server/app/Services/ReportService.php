@@ -11,7 +11,6 @@ namespace App\Services;
 use App\Models\Agency;
 use App\Models\Game;
 use App\Models\GameSessionTracker;
-use App\Models\NewRegisterTracker;
 use App\Models\Payment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -42,14 +41,12 @@ class ReportService extends Service{
     public function __construct(
         Payment $payment,
         GameSessionTracker $gameSessionTracker,
-        NewRegisterTracker $newRegisterTracker,
         Agency $agency,
     Game $game
     )
     {
         $this->payment = $payment;
         $this->gameSessionTracker = $gameSessionTracker;
-        $this->newRegisterTracker = $newRegisterTracker;
         $this->agency = $agency;
         $this->game = $game;
     }
