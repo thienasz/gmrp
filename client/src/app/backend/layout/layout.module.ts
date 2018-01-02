@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { SidebarMinimizeDirective, MobileSidebarToggleDirective } from './sidebar.directive';
+import { SIDEBAR_TOGGLE_DIRECTIVES } from './sidebar.directive';
 import { MaterialModule } from '../../shared/material.module';
 import { RouterModule } from '@angular/router';
 
@@ -17,8 +17,7 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    SidebarMinimizeDirective,
-    MobileSidebarToggleDirective
+    SIDEBAR_TOGGLE_DIRECTIVES
   ],
   exports: [
     HeaderComponent,

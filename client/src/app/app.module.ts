@@ -7,7 +7,6 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
-import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BackendComponent } from './backend/backend.component';
 import { AppInterceptor } from './shared/services/interceptor.service';
