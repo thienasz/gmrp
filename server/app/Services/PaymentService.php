@@ -9,18 +9,22 @@
 namespace App\Services;
 
 use App\Models\Payment;
+use App\Models\PaymentType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use League\Flysystem\Exception;
 
 class PaymentService extends Service{
     private $payment;
+    private $paymentType;
 
     public function __construct(
-        Payment $payment
+        Payment $payment,
+        PaymentType $paymentType
     )
     {
         $this->payment = $payment;
+        $this->paymentType = $paymentType;
     }
 
     public function pay(Request $request){
@@ -33,6 +37,12 @@ class PaymentService extends Service{
         $data['user_id'] = Auth::user()->id;
         $data['agency_id'] = Auth::user()->agency_id;
         $data['game_id'] = Auth::user()->game_id;
+
+        $pct = $this->paymentType->firstOrCreate([
+            'name' => $data['pay_card_type']
+        ]);
+        $data['pay_card_type'] = $pct->id;
+
         return $this->payment->create($data);
     }
 }

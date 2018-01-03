@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserDetailsSeeder::class);
 
 
-        $this->call(PaymentTableSeeder::class);
-        $this->call(GameSessionTrackerTableSeeder::class);
+        //$this->call(PaymentTableSeeder::class);
+        //$this->call(GameSessionTrackerTableSeeder::class);
     }
 }
