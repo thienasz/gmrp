@@ -27,7 +27,7 @@ class CreateGameSessionTrackerTable extends Migration
                 $table->tinyInteger('mobile')->nullable();
                 $table->string('location')->nullable();
                 $table->integer('agency_id')->nullable();
-                $table->interger('is_online')->default(1);
+                $table->integer('is_online')->default(1);
                 $table->timestamps();
             });
     }

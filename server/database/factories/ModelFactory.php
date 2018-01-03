@@ -117,3 +117,11 @@ $factory->define(App\Models\GameAgency::class, function (Faker\Generator $faker)
         'percent_share' => $faker->numberBetween(1, 100),
     ];
 });
+
+$factory->define(App\Models\Permission::class, function (Faker\Generator $faker) {
+    \Illuminate\Database\Eloquent\Model::reguard();
+    \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+    return [
+        'name' => $faker->name
+    ];
+});

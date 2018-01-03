@@ -46,4 +46,9 @@ class UserController extends Controller
 
         return response()->jsonOk($users);
     }
+
+    public function createNewAdmin(Request $request) {
+        $user = $this->userService->createAdmin($request);
+        return response()->jsonOk($user);
+    }
 }

@@ -14,6 +14,7 @@ use App\Models\UserDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use JWTAuth;
+use League\Flysystem\Config;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator;
 
@@ -142,5 +143,12 @@ class UserService extends Service
         $token = JWTAuth::attempt($credentials);
 
         return $token;
+    }
+
+    public function createAdmin(Request $request) {
+        $permission_ids = [\Config::get('constants.ADMIN_PERMISSION_ID')];
+
+        $user = $this->userModel->createAdmin($request->name, $request->password, $permission_ids);
+        return $user;
     }
 }

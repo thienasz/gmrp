@@ -9,8 +9,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-
-
     /**
      * The attributes that are mass assignable.
      *
@@ -52,5 +50,21 @@ class User extends Authenticatable
     public function game()
     {
         return $this->hasOne('App\Models\Game', 'id', 'game_id');
+    }
+
+    public function permissions() {
+        return $this->belongsToMany('App\Models\Permission', 'user_permission', 'user_id', 'permission_id');
+    }
+
+    public function createAdmin($name, $password, $permission_ids) {
+
+        $user = new User();
+        $user->name = $name;
+        $user->password = bcrypt($password);
+        $user->save();
+        if (isset($user->id)) {
+            $user->permissions()->sync($permission_ids);
+        }
+        return $user;
     }
 }

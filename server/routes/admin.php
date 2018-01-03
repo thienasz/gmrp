@@ -59,6 +59,8 @@ Route::middleware(['cors'])->group(function (){
         Route::post('card-revenue','ReportController@cardRevenue');
         Route::post('agency-revenue','ReportController@agencyRevenue');
 
+        Route::post('user', 'UserController@createNewAdmin');
+
     });
 
 
