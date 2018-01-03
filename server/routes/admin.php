@@ -51,6 +51,7 @@ Route::middleware(['cors'])->group(function (){
         Route::post('ccu','ReportController@currentActiveUser');
         Route::post('pu','ReportController@paidUser');
         Route::post('user/report','ReportController@userReport');
+        Route::post('user/report-year','ReportController@userReportYear');
         Route::post('payment-card','ReportController@paymentCard');
         Route::post('total-install','ReportController@totalInstall');
 
@@ -58,6 +59,8 @@ Route::middleware(['cors'])->group(function (){
         Route::post('account-report','ReportController@accountReport');
         Route::post('card-revenue','ReportController@cardRevenue');
         Route::post('agency-revenue','ReportController@agencyRevenue');
+
+        Route::post('agency/revenue-year','ReportController@agencyRevenueYear');
 
     });
 
