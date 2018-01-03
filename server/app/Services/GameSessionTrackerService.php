@@ -45,7 +45,6 @@ class GameSessionTrackerService extends Service{
 
     public function startGameSession(Request $request){
         $data = $request->only([
-            'last_activity',
             'ip',
             'os_type',
             'os_version',

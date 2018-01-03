@@ -21,6 +21,7 @@ class CreatePaymentsTable extends Migration
                 $table->integer('agency_id')->nullable();
                 $table->integer('pay_card_type');
                 $table->float('pay_price', 16);
+                $table->text('description');
                 $table->timestamps();
             });
     }
