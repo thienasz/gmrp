@@ -1,0 +1,39 @@
+<div class="card-viewer">
+  <div class="card-viewer-wrapper">
+    <div class="card-viewer-title">
+        Admin Users
+    </div>
+    <div class="card-viewer-body">
+        <div class="mb-3">
+            <button mat-raised-button color="primary" (click)="user=null;openDialog()">Create</button>
+          </div>
+
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Date registered</th>
+                <th>Game</th>
+                <!-- <th>Status</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of adUsers">
+                <td>{{ user.email }}</td>
+                <td>{{ user.created_at }}</td>
+                <td>{{ user.game ? user.game.name : "" }}</td>
+                <!-- <td>
+                  <span class="badge badge-success">Active</span>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+
+<mat-paginator *ngIf="itemsPerPage < totalItems"
+[length]="totalItems" 
+[pageSize]="itemsPerPage" 
+(page)="pageChanged($event)">
+</mat-paginator>
+    </div>
+  </div>
+  </div>

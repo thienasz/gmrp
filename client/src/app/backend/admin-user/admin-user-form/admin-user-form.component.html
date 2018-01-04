@@ -1,0 +1,40 @@
+<div class="form-full-container">
+    <form [formGroup]="adminUserForm" (ngSubmit)="onSubmit()" class="form-full">
+        <mat-form-field>
+            <input matInput [formControl]="adminUserForm.get('username')" placeholder="Name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input type="password" matInput [formControl]="adminUserForm.get('password')" placeholder="Password">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="password" matInput [formControl]="adminUserForm.get('cfpassword')" placeholder="Password">
+        </mat-form-field>
+        
+        <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <app-select-role (change)="onChangeRole($event)" [role]="agencyForm.get('roles').get('role_id')"></app-select-role>
+                    </td>
+                    <td>
+                        <button mat-icon-button type="button" (click)="addRole()">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </td>
+                </tr>
+    
+                <tr *ngFor="let role of roles; let i = index">
+                    <td>{{ role.name }}</td>
+                    <td>
+                        <button mat-icon-button type="button" (click)="removeRole(i)">
+                            <i class="material-icons">clear</i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+    
+        <div class="button-container">
+            <button type="submit" mat-raised-button>Submit</button>
+        </div>
+    </form>
+</div>

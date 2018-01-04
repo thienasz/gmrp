@@ -1,0 +1,32 @@
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+html,
+body,
+.container {
+    height: 100%;
+    width: 100%;
+}
+.container {
+    display: table;
+    vertical-align: middle;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+.login-screen-bg {
+    background-color: #fff;
+}
+.panel-git {
+    border: 1px solid #d8dee2;
+}
+    .panel-git h3 {
+        color: #fff;
+    }
+    .panel-git .panel-heading {
+        background-color: #829AA8;
+    }
