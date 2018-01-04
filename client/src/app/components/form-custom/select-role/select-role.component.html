@@ -1,0 +1,16 @@
+<mat-form-field>
+  <input type="text" [formControl]="roleTem" matInput placeholder="Chọn role" [matAutocomplete]="autorole1">
+</mat-form-field>
+
+<mat-autocomplete #autorole1="matAutocomplete">
+  <mat-option (onSelectionChange)="onChange($event, option)" *ngFor="let option of roles" [value]="option.name">
+    {{ option.name }}
+  </mat-option>
+</mat-autocomplete>
+<!-- <mat-form-field>
+    <mat-select placeholder="Favorite food">
+        <mat-option (selected)="onChange($event, option)" *ngFor="let option of roles" [value]="option.name">
+            {{ option.name }}
+          </mat-option>
+    </mat-select>
+  </mat-form-field> -->
