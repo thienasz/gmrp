@@ -1,0 +1,34 @@
+<div class="card-viewer">
+  <div class="card-viewer-wrapper">
+    <div class="card-viewer-title">
+      Administrator Account Management
+    </div>
+    <div class="card-viewer-body">
+      <div class="mb-3">
+        <button mat-raised-button color="primary" (click)="openDialog()">Create</button>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let account of accounts">
+            <th scope="row">{{ account.id }}</th>
+            <td>{{ account.name }}</td>
+            <td>{{ account.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator *ngIf="itemsPerPage < totalItems"
+      [length]="totalItems" 
+      [pageSize]="itemsPerPage" 
+      (page)="pageChanged($event)">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

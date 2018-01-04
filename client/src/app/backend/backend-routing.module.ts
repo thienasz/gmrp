@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BackendComponent } from './backend.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
+import { AccountComponent } from './account/account.component';
 import { GameComponent } from './game/game.component';
 import { AgencyComponent } from './agency/agency.component';
 import { RevenueComponent } from './revenue/revenue.component';
@@ -10,25 +11,29 @@ import { SettingComponent } from './setting/setting.component';
 
 const routes: Routes = [
   {
-    path: '', 
+    path: '',
     component: BackendComponent,
     children: [
       // { path: '', redirectTo: 'revenues', pathMatch: true },
-      { 
-        path: 'dashboard', 
+      {
+        path: 'dashboard',
         loadChildren: 'app/backend/revenue/revenue.module#RevenueModule',
         // component: DashboardComponent
       },
       { path: 'users', component: UserComponent },
-      { path: 'games', 
-        loadChildren: 'app/backend/game/game.module#GameModule',  
+      { path: 'accounts',
+        loadChildren: 'app/backend/account/account.module#AccountModule',
       },
-      { 
-        path: 'agencies', 
+      {
+        path: 'games',
+        loadChildren: 'app/backend/game/game.module#GameModule',
+      },
+      {
+        path: 'agencies',
         loadChildren: 'app/backend/agency/agency.module#AgencyModule',
       },
-      { 
-        path: 'revenues', 
+      {
+        path: 'revenues',
         // component: BackendComponent,
         loadChildren: 'app/backend/revenue/revenue.module#RevenueModule',
       },

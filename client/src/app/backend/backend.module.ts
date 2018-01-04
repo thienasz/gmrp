@@ -5,6 +5,7 @@ import { BackendRoutingModule } from './backend-routing.module';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
+import { AccountComponent } from './account/account.component';
 import { GameComponent } from './game/game.component';
 import { AgencyComponent } from './agency/agency.component';
 import { BackendComponent } from './backend.component';
@@ -18,6 +19,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { GameService } from './game/game.service';
 import { RevenueService } from './revenue/revenue.service';
 import { UserService } from './user/user.service';
+import { AccountService } from './account/account.service';
 
 @NgModule({
   imports: [
@@ -39,8 +41,8 @@ import { UserService } from './user/user.service';
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
     RevenueService,
-    UserService
-
+    UserService,
+    AccountService
   ]
 })
 export class BackendModule { }
