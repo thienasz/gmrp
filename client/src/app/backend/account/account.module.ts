@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../shared/material.module';
 import { DialogAccountForm } from './account-form/account-form.component';
 import { AccountComponent } from './account.component';
+import { SelectPermissionComponent } from '../../components/form-custom/select-permission/select-permission.component';
+import { FormCustomModule } from '../../components/form-custom/form-custom.module';
 
 @NgModule({
   imports: [
@@ -14,7 +16,8 @@ import { AccountComponent } from './account.component';
     AccountRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    FormCustomModule
   ],
   declarations: [
     DialogAccountForm,
