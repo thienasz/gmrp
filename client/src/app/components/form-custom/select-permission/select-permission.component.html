@@ -1,0 +1,9 @@
+<mat-form-field>
+  <input type="text" [formControl]="permissionTemp" matInput placeholder="Select an permission" [matAutocomplete]="autoPermission">
+</mat-form-field>
+
+<mat-autocomplete #autoPermission="matAutocomplete">
+  <mat-option (onSelectionChange)="onChange($event, option)" *ngFor="let option of permissions" [value]="option.name">
+    {{ option.name }}
+  </mat-option>
+</mat-autocomplete>

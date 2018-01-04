@@ -5,6 +5,7 @@ import { SelectGameComponent } from './select-game/select-game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatOptionModule, MatFormFieldModule, MatAutocompleteModule, MatSelectModule } from '@angular/material';
 import { YearInputComponent } from './year-input/year-input.component';
+import { SelectPermissionComponent } from './select-permission/select-permission.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { YearInputComponent } from './year-input/year-input.component';
   declarations: [
     SelectAgencyComponent,
     SelectGameComponent,
-    YearInputComponent
+    YearInputComponent,
+    SelectPermissionComponent
   ],
   exports: [
     SelectAgencyComponent,

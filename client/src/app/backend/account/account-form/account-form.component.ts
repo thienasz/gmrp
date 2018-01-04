@@ -13,13 +13,19 @@ export class DialogAccountForm implements OnInit {
   account: any = {
       name: '',
       password: ''
-  }
+  };
+
+  permissions: Array<any> = [];
 
   ngOnInit(): void {
-      this.accountForm = this.fb.group({
-          name: [this.account.name, Validators.required],
-          password: [this.account.password, Validators.required]
-      });
+    this.accountForm = this.fb.group({
+        name: [this.account.name, Validators.required],
+        password: [this.account.password, Validators.required],
+        permissions: this.fb.group({
+            permission_id: ['', Validators.required],
+            name: ['']
+        })
+    });
   }
 
   constructor (
@@ -28,9 +34,15 @@ export class DialogAccountForm implements OnInit {
       private fb: FormBuilder,
       private accountService: AccountService,
   ) {
-      if (data) {
-          this.account = data;
-      }
+    if (data && data.id) {
+        this.account = data;
+        for (const item of data.games) {
+            this.permissions.push({
+                permission_id: item.id,
+                name: item.name,
+            });
+        }
+    }
   }
 
   onSubmit() {
@@ -45,4 +57,8 @@ export class DialogAccountForm implements OnInit {
   onNoClick(): void {
       this.dialogRef.close();
   }
+
+  onChangePermission($event) {
+    this.accountForm.get('permissions').get('name').setValue($event.name);
+}
 }

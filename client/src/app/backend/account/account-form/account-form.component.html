@@ -7,7 +7,16 @@
       <mat-form-field>
           <input matInput type="password" [formControl]="accountForm.get('password')" placeholder="Password">
       </mat-form-field>
-
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <app-select-permission (change)="onChangePermission($event)" [permission]="accountForm.get('permissions').get('permission_id')"></app-select-permission>
+            </td>
+        </tr>
+        <tr *ngFor="let permission of permissions; let i = index">
+            <td>{{ permission.name }}</td>
+        </tr>
+    </table>
       <div class="button-container">
           <button type="submit" mat-raised-button>Submit</button>
       </div>
